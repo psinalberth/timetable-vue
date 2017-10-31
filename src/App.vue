@@ -1,4 +1,3 @@
-
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
@@ -34,12 +33,13 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="blue-grey" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Timetable</v-toolbar-title>
-    </v-toolbar>
+    
     <main>
       <v-content>
+        <v-toolbar class="elevation-0" color="blue-grey" dark fixed app>
+          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+          <v-toolbar-title>{{title}}</v-toolbar-title>
+        </v-toolbar>
         <!-- <v-container fluid> -->
           <transition name="slide-x-transition" mode="out-in">
             <router-view></router-view>
@@ -47,9 +47,9 @@
         <!-- </v-container> -->
       </v-content>
     </main>
-  <!--   <v-footer color="indigo" app>
-    <span class="white--text">&copy; 2017</span>
-  </v-footer> -->
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2017</span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -57,7 +57,8 @@
   export default {
 
     data: () => ({
-      drawer: true
+      drawer: true,
+      title: 'Timetable'
     }),
     props: {
       source: String

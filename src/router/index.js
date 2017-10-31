@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Disciplina from '@/components/disciplina/Disciplina'
-import DisciplinaDetail from '@/components/disciplina/DisciplinaDetail'
+import DisciplinaList from '@/components/disciplina-list/DisciplinaList'
+import DisciplinaDetail from '@/components/disciplina-detail/DisciplinaDetail'
 import Navegacao from '@/components/Navegacao'
 
 Vue.use(Router)
@@ -20,7 +20,7 @@ export default new Router({
     {
       path: '/disciplina',
       name: 'disciplina-list',
-      component: Disciplina
+      component: DisciplinaList
     },
     {
       path: '/disciplina/:id',

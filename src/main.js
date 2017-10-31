@@ -4,12 +4,12 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
 import router from './router'
-import DisciplinaDetail from './components/disciplina/DisciplinaDetail'
-
+import DeleteModal from '@/components/shared/DeleteModal'
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
-Vue.component('disciplina-detalhe', DisciplinaDetail)
+
+Vue.component('v-modal', DeleteModal)
 
 import('../node_modules/vuetify/dist/vuetify.min.js')
 import('../node_modules/vuetify/dist/vuetify.min.css')

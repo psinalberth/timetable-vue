@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="modalDelete" max-width="400px">
+  <v-dialog persistent v-model="visible" max-width="400px">
     <v-card>
       <v-card-title dark class="title blue-grey lighten-2 white--text">Remover Registro?</v-card-title>
       <v-card-text align-center justify-center>
@@ -9,7 +9,7 @@
         <b>Atenção!</b> Esta ação não poderá ser desfeita. Confirmar? 
       </v-card-text>
       <v-card-actions align-center justify-center>
-        <v-btn flat color="green lighten-1" @click="showModal">Remover</v-btn>
+        <v-btn flat color="green lighten-1" @click="remove">Remover</v-btn>
         <v-btn flat color="red lighten-1" @click="showModal">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
@@ -18,25 +18,22 @@
 <script>
  export default {
    props: {
-     modal: {
+     visible: {
        type: Boolean,
        required: true
      }
    },
    data () {
      return {
-       modalDelete: this.modal
+       modalDelete: false
      }
    },
    methods: {
      showModal () {
-       this.modalDelete = !this.modalDelete
-       console.log(this.modalDelete)
-     }
-   },
-   events: {
-     'show-modal': function (visible) {
-       this.modalDelete = visible
+       this.$emit('onCancel')
+     },
+     remove () {
+       this.$emit('onConfirm')
      }
    }
  }
