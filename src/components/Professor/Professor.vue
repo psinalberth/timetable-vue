@@ -19,7 +19,7 @@
        </v-stepper-step>
       </v-stepper-header>
       <v-stepper-content step="1">
-       <v-card>
+       <v-card flat>
         <v-layout row>
          <v-text-field label="Nome" required></v-text-field>
         </v-layout>
@@ -39,33 +39,31 @@
        </v-card>
       </v-stepper-content>
       <v-stepper-content step="2">
-       <v-card style="height: 307px">
+       <v-card flat height="260px">
         <v-layout row>
-          <span>Escolha as disciplinas que deseja ou possui disponibilidade para lecionar:</span>
+          <span>Neste passo, você deverá selecionar as disciplinas as quais possui afinidade ou disponibilidade para lecionar.</span>
         </v-layout>
-        <v-container align-center>
-          <v-layout row class="mt-5 mb-5">
-           <v-spacer></v-spacer>
-           <v-btn large class="primary" @click="dialog = true">
-            <v-icon left>search</v-icon>
-            Pesquisar  
-           </v-btn>
-           <v-spacer></v-spacer>
-          </v-layout>
-        </v-container>
-        <v-layout row class="mt-5">
-         <v-btn class="flat text-xs-right text-sm-right" @click.native="el = 1">Anterior</v-btn>
+        <v-layout row>
          <v-spacer></v-spacer>
-         <v-btn class="primary text-xs-right text-sm-right" @click.native="el = 3">Próximo</v-btn>
+         <v-btn large class="primary" @click="dialog = true">
+          <v-icon left>search</v-icon>
+          Pesquisar  
+         </v-btn>
+         <v-spacer></v-spacer>
         </v-layout>
        </v-card>
+      <v-layout row>
+       <v-btn class="flat text-xs-right text-sm-right" @click.native="el = 1">Anterior</v-btn>
+       <v-spacer></v-spacer>
+       <v-btn class="primary text-xs-right text-sm-right" @click.native="el = 3">Próximo</v-btn>
+      </v-layout>
       </v-stepper-content>
       <v-stepper-content step="3">
-       <v-card style="height: 307px">
+       <v-card flat height="260px">
         <v-layout row>
-          <span class="ml-2">Escolha os horários que <strong>não</strong> possui disponibilidade para lecionar:</span>
+          <span>Escolha os horários nos quais <strong>não</strong> possui disponibilidade para lecionar.</span>
         </v-layout>
-        <v-layout row class="mt-5 mb-5">
+        <v-layout row class="mt-4">
          <v-spacer></v-spacer>
          <v-btn large class="primary" @click.native="dialog2 = true">
           <v-icon left>search</v-icon>
@@ -73,16 +71,12 @@
          </v-btn>
          <v-spacer></v-spacer>
         </v-layout>
-        <v-layout>
-         <span class="ml-2 mr-2">*</span>
-         <span class="grey--text">Os horários selecionados aqui podem ou não ser satisfeitos.</span>
-        </v-layout>
-        <v-layout row>
-           <v-btn class="flat text-xs-right text-sm-right" @click.native="el = 2">Anterior</v-btn>
-           <v-spacer></v-spacer>
-           <v-btn class="primary text-xs-right text-sm-right" @click.native="el = 3">Concluir</v-btn>
-          </v-layout>
        </v-card>
+       <v-layout row>
+         <v-btn class="flat text-xs-right text-sm-right" @click.native="el = 2">Anterior</v-btn>
+         <v-spacer></v-spacer>
+         <v-btn class="primary text-xs-right text-sm-right" @click.native="el = 3">Concluir</v-btn>
+        </v-layout>
       </v-stepper-content>
      </v-stepper>
    </v-flex>
