@@ -1,55 +1,44 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      persistent
-      v-model="drawer"
-      enable-resize-watcher
-      app
-    >
-      <v-list dense>
-        <v-list-tile @click="goTo('/')">
+  <v-app>
+    <v-navigation-drawer app temporary v-model="drawer">
+      <v-list>
+        <v-list-tile 
+          v-for="item in menuItems" 
+          router :to="{name: item.link}"
+          :key="item.title">
           <v-list-tile-action>
-            <v-icon color="blue darken-2">home</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="goTo('disciplina-list')">
-          <v-list-tile-action>
-            <v-icon>favorite</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Disciplinas</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="goTo('timetable')">
-          <v-list-tile-action>
-            <v-icon color="teal darken-2">schedule</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Timetable</v-list-tile-title>
+            {{ item.title }}
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    
+    <v-toolbar app fixed dark class="primary">
+      <v-toolbar-side-icon 
+        @click.native.stop="drawer = !drawer"
+        class="hidden-sm-and-up">  
+      </v-toolbar-side-icon>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer">Timetable</router-link>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn flat v-if="item.toolbar" 
+          v-for="item in menuItems" 
+          :key="item.title"
+          :to="{name: item.link}">
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
     <main>
       <v-content>
-        <v-toolbar class="elevation-0" color="blue-grey" dark fixed app>
-          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-          <v-toolbar-title>{{title}}</v-toolbar-title>
-        </v-toolbar>
-        <!-- <v-container fluid> -->
-          <transition name="slide-x-transition" mode="out-in">
-            <router-view></router-view>
-          </transition>
-        <!-- </v-container> -->
+      <router-view></router-view>
       </v-content>
     </main>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -57,8 +46,16 @@
   export default {
 
     data: () => ({
-      drawer: true,
-      title: 'Timetable'
+      drawer: false,
+      title: 'Timetable',
+      menuItems: [
+        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'novo-professor'},
+        {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'disciplina-list'},
+        {icon: 'event', title: 'Grades de Horário', toolbar: true, link: 'nova-disciplina'},
+        {icon: 'face', title: 'Sign Up', toolbar: true, link: 'navegacao'},
+        {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'nova-disciplina'},
+        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'nova-disciplina'}
+      ]
     }),
     props: {
       source: String
@@ -70,6 +67,6 @@
     }
   }
 </script>
-
 <style>
+  @require './stylus/main'
 </style>

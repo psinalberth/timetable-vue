@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import DisciplinaList from '@/components/disciplina-list/DisciplinaList'
 import DisciplinaDetail from '@/components/disciplina-detail/DisciplinaDetail'
 import Navegacao from '@/components/Navegacao'
+import Professor from '@/components/Professor/Professor'
 
 Vue.use(Router)
 Vue.use(Vuelidate)
@@ -18,7 +19,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/disciplina',
+      path: '/disciplinas',
       name: 'disciplina-list',
       component: DisciplinaList
     },
@@ -36,6 +37,11 @@ export default new Router({
       path: '/disciplina/adicionar',
       name: 'nova-disciplina',
       component: DisciplinaDetail
+    },
+    {
+      path: '/professor',
+      name: 'novo-professor',
+      component: Professor
     }
   ]
 })

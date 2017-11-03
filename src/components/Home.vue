@@ -1,5 +1,12 @@
 <template>
- <v-layout>
-  <p>Home rulez!</p>
- </v-layout>
+ <v-container>
+  <v-layout row wrap>
+   <v-flex xs12 sm6>
+    <v-btn large router to="/disciplinas">Explore Meetups</v-btn>
+   </v-flex>
+   <v-flex xs12 sm6>
+    <v-btn large router to="/">Explore Meetups</v-btn>
+   </v-flex>
+  </v-layout>
+ </v-container>
 </template>

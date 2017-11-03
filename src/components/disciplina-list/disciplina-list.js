@@ -9,7 +9,8 @@ export default {
         textoPesquisa: '',
         title: 'Disciplinas',
         disciplinas: [],
-        id: ''
+        id: '',
+        title: 'Disciplinas'
       }
     },
     components: {
