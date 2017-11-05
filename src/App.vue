@@ -36,7 +36,9 @@
     </v-toolbar>
     <main>
       <v-content>
-      <router-view></router-view>
+       <transition name="slide-x-transition" mode="out-in">
+        <router-view></router-view>
+       </transition>
       </v-content>
     </main>
   </v-app>

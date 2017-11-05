@@ -17,8 +17,22 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Ano de Vigência" required></v-text-field>
+    <v-text-field label="Ano de Vigência" v-model="matriz.ano" required></v-text-field>
    </v-flex>
   </v-layout>
  </v-container>	
 </template>
+<script>
+ export default {
+   data () {
+     return {
+       matriz: ''
+     }
+   },
+   mounted () {
+     if (this.$route.params.selecionado) {
+       this.matriz = this.$route.params.selecionado
+     }
+   }
+ }
+</script>
