@@ -23,14 +23,6 @@
               <v-list-tile-title>{{disciplina.descricao}}</v-list-tile-title>
               <v-list-tile-sub-title>{{disciplina.sigla}}</v-list-tile-sub-title>
             </v-list-tile-content>
-            <v-list-tile-action>
-              <v-tooltip bottom>
-              <v-btn flat icon color="red lighten-2" slot="activator" @click.stop="deletar(disciplina.id)">
-                <v-icon>delete</v-icon>
-              </v-btn>
-              <span>Remover</span>
-              </v-tooltip>
-            </v-list-tile-action>
           </v-list-tile>
           <v-divider></v-divider>
         </template>

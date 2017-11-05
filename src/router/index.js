@@ -2,10 +2,16 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import DisciplinaList from '@/components/disciplina-list/DisciplinaList'
-import DisciplinaDetail from '@/components/disciplina-detail/DisciplinaDetail'
+import Disciplinas from '@/components/Disciplina/Disciplinas'
+import Disciplina from '@/components/Disciplina/Disciplina'
 import Navegacao from '@/components/Navegacao'
 import Professor from '@/components/Professor/Professor'
+import Cursos from '@/components/Curso/Cursos'
+import Curso from '@/components/Curso/Curso'
+import Departamento from '@/components/Departamento/Departamento'
+import Horario from '@/components/Horario/Horario'
+import Sala from '@/components/Sala/Sala'
+import MatrizCurricular from '@/components/MatrizCurricular/MatrizCurricular'
 
 Vue.use(Router)
 Vue.use(Vuelidate)
@@ -13,35 +19,17 @@ Vue.use(Vuelidate)
 export default new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/disciplinas',
-      name: 'disciplina-list',
-      component: DisciplinaList
-    },
-    {
-      path: '/disciplina/:id',
-      name: 'disciplina-detalhe',
-      component: DisciplinaDetail
-    },
-    {
-      path: '/navegacao',
-      name: 'navegacao',
-      component: Navegacao
-    },
-    {
-      path: '/disciplina/adicionar',
-      name: 'nova-disciplina',
-      component: DisciplinaDetail
-    },
-    {
-      path: '/professor',
-      name: 'novo-professor',
-      component: Professor
-    }
+    { path: '/', name: 'Home', component: Home },
+    { path: '/disciplinas', name: 'disciplina-list', component: Disciplinas },
+    { path: '/disciplina/:id', name: 'disciplina-detalhe', component: Disciplina },
+    { path: '/navegacao', name: 'navegacao', component: Navegacao },
+    { path: '/disciplina/adicionar', name: 'nova-disciplina', component: Disciplina },
+    { path: '/professor', name: 'novo-professor', component: Professor },
+    { path: '/cursos', name: 'listar-cursos', component: Cursos },
+    { path: '/cursos/:id', name: 'editar-curso', component: Curso },
+    { path: '/departamentos', name: 'novo-departamento', component: Departamento },
+    { path: '/horarios', name: 'novo-horario', component: Horario },
+    { path: '/salas', name: 'nova-sala', component: Sala },
+    { path: '/matrizes', name: 'nova-matriz', component: MatrizCurricular }
   ]
 })

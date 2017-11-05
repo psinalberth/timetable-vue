@@ -1,11 +1,8 @@
 <template>
- <v-container>
-  <v-layout row wrap>
-   <v-flex xs12 sm6>
-    <v-btn large router to="/disciplinas">Explore Meetups</v-btn>
-   </v-flex>
-   <v-flex xs12 sm6>
-    <v-btn large router to="/">Explore Meetups</v-btn>
+ <v-container fluid align-center justify-center>
+  <v-layout row>
+   <v-flex xs12>
+   	 <h3 class="grey--text">I'm the Home Page!</h3>
    </v-flex>
   </v-layout>
  </v-container>

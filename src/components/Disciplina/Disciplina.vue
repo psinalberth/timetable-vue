@@ -22,7 +22,7 @@
   </v-layout>
    <v-layout row class="mt-0">
    <v-flex xs12 sm6 offset-sm3>
-    <span>* Campos obrigatórios</span>
+    <span class="red--text mr-1">*</span>Campos obrigatórios
    </v-flex>
   </v-layout>
   <v-layout row class="mt-3">

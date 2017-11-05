@@ -54,7 +54,8 @@
         {icon: 'event', title: 'Grades de Horário', toolbar: true, link: 'nova-disciplina'},
         {icon: 'face', title: 'Sign Up', toolbar: true, link: 'navegacao'},
         {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'nova-disciplina'},
-        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'nova-disciplina'}
+        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'nova-disciplina'},
+        {icon: 'heart', tiltle: 'Cursos', toolbar: false, link: 'novo-curso'}
       ]
     }),
     props: {
