@@ -39,4 +39,41 @@
     </v-btn>
   </v-layout>
 </template>
-<script src="./disciplina-list.js"></script>
+<script>
+ import { findAll } from '@/services/disciplina-service'
+
+ export default {
+   data () {
+     return {
+       modalDelete: false,
+       textoPesquisa: '',
+       title: 'Disciplinas',
+       disciplinas: []
+     }
+   },
+   mounted () {
+     findAll().then(response => response.data).then(disciplinas => { this.disciplinas = disciplinas })
+   },
+   computed: {
+     filter () {
+       var self = this
+
+       if (this.textoPesquisa == null || this.textoPesquisa === '') {
+         return this.disciplinas
+       }
+
+       return this.disciplinas.filter(function (disciplina) {
+         return disciplina.descricao.toUpperCase().indexOf(self.textoPesquisa.toUpperCase()) > -1
+       })
+     }
+   },
+   methods: {
+     novo () {
+       this.$router.push({name: 'editar-disciplina', params: {id: 'nova'}})
+     },
+     editar (disciplina) {
+       this.$router.push({name: 'editar-disciplina', params: {id: disciplina.id}})
+     }
+   }
+}
+</script>

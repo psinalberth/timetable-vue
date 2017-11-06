@@ -51,8 +51,8 @@
       drawer: false,
       title: 'Timetable',
       menuItems: [
-        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'novo-professor'},
-        {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'disciplina-list'},
+        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'editar-professor'},
+        {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
         {icon: 'event', title: 'Grades de Horário', toolbar: true, link: 'nova-disciplina'},
         {icon: 'face', title: 'Sign Up', toolbar: true, link: 'navegacao'},
         {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'nova-disciplina'},

@@ -25,9 +25,11 @@
     <v-select 
      label="Departamento" 
      v-model="curso.departamento"
-     :items="departamentos" 
-     item-text="nome" 
-     item-value="departamento" required>
+     :items="departamentos"
+     item-text="nome"
+     item-value="nome" 
+     return-object 
+     required>
     </v-select>
    </v-flex>
   </v-layout>
@@ -59,11 +61,6 @@
        }
      }
    },
-   ready () {
-     if (this.$route.params.selecionado) {
-       console.log(this.$route.params.selecionado)
-     }
-   },
    mounted () {
      findAll().then(response => response.data).then(departamentos => { this.departamentos = departamentos })
 
@@ -73,7 +70,6 @@
    },
    methods: {
      submit () {
-       console.log(this.curso)
        save(this.curso)
      }
    }

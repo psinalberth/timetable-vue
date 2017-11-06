@@ -1,0 +1,17 @@
+<div>
+  <v-toolbar :color="$store.state.currentColor" fixed="fixed" dark="dark" app="app" id="main-toolbar">
+    <v-toolbar-side-icon @click.stop="toggleSidebar"></v-toolbar-side-icon>
+    <v-btn icon="icon" large="large" @click="isSearching = true">
+      <v-icon>search</v-icon>
+    </v-btn>
+    <transition name="slide" mode="out-in">
+      <v-toolbar-title class="d-flex" v-html="$store.state.h1" style="position: relative" v-bind:key="$store.state.h1"></v-toolbar-title>
+    </transition>
+  </v-toolbar>
+  <v-toolbar :color="$store.state.currentColor" fixed="fixed" dark="dark" app="app" :manual-scroll="!isSearching" ref="toolbar" flat="flat">
+    <v-btn icon="icon" dark="dark" large="large" @click="isSearching = false">
+      <v-icon>arrow_back</v-icon>
+    </v-btn>
+    <v-text-field placeholder="Search" prepend-icon="search" id="search" clearable="clearable" single-line="single-line" solo="solo" key="search" v-model="search" ref="search"></v-text-field>
+  </v-toolbar>
+</div>
