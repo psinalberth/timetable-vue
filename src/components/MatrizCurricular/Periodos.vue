@@ -31,7 +31,7 @@
      <v-divider></v-divider>
      <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="primary">Ver mais</v-btn>
+      <v-btn class="primary" @click="verDetalhes(periodo)">Ver mais</v-btn>
      </v-card-actions>
     </v-card>
    </v-flex>
@@ -55,6 +55,11 @@
      if (this.$route.params.selecionado) {
        this.matriz = this.$route.params.selecionado
        Http.get('/matrizes/' + this.matriz.id + '/periodos').then(response => response.data).then(periodos => { this.periodos = periodos })
+     }
+   },
+   methods: {
+     verDetalhes (periodo) {
+       this.$router.push({name: 'listar-detalhes', params: { matriz: this.matriz.id, periodo: periodo.codigo }})
      }
    }
  }

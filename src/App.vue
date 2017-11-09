@@ -1,42 +1,14 @@
 <template>
   <v-app>
-    <v-navigation-drawer app temporary v-model="drawer">
-      <v-list>
-        <v-list-tile 
-          v-for="item in menuItems" 
-          router :to="{name: item.link}"
-          :key="item.title">
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            {{ item.title }}
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar app fixed dark class="primary">
-      <v-toolbar-side-icon 
-        @click.native.stop="drawer = !drawer"
-        class="hidden-sm-and-up">  
-      </v-toolbar-side-icon>
-      <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">Timetable</router-link>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat v-if="item.toolbar" 
-          v-for="item in menuItems" 
-          :key="item.title"
-          :to="{name: item.link}">
-          <v-icon left>{{ item.icon }}</v-icon>
-          {{ item.title }}
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+    <navegacao :menuItems="menuItems" :drawer="drawer"></navegacao>
+    <transition name="slide-y-transition">
+     <toolbar-home v-if="$route.meta.home" :menuItems="menuItems"></toolbar-home>
+     <toolbar-busca v-if="$route.meta.list"></toolbar-busca>
+     <toolbar-formulario title="Hello" v-if="$route.meta.form"></toolbar-formulario>
+    </transition>
     <main>
       <v-content>
-       <transition name="slide-x-transition" mode="out-in">
+       <transition name="slide-y-transition" mode="out-in">
         <router-view></router-view>
        </transition>
       </v-content>
@@ -45,6 +17,11 @@
 </template>
 
 <script>
+  import Navegacao from '@/components/Shared/Navegacao'
+  import ToolbarHome from '@/components/Shared/Toolbar/ToolbarHome'
+  import ToolbarBusca from '@/components/Shared/Toolbar/ToolbarBusca'
+  import ToolbarFormulario from '@/components/Shared/Toolbar/ToolbarFormulario'
+
   export default {
 
     data: () => ({
@@ -66,7 +43,16 @@
     methods: {
       goTo: function (route) {
         this.$router.push({name: route})
+      },
+      goBack () {
+        console.log('Hello')
       }
+    },
+    components: {
+      Navegacao,
+      ToolbarHome,
+      ToolbarBusca,
+      ToolbarFormulario
     }
   }
 </script>

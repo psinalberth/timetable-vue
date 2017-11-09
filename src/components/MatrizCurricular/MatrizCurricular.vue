@@ -64,6 +64,8 @@
    mounted () {
      if (this.$route.params.selecionado) {
        this.matriz = this.$route.params.selecionado
+     } else {
+       Http.get('matrizes/' + this.$route.params.id).then(response => response.data).then(matriz => { this.matriz = matriz })
      }
 
      Http.get('cursos/').then(response => response.data).then(cursos => { this.cursos = cursos })

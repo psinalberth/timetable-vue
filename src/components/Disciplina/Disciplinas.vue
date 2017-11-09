@@ -43,6 +43,7 @@
  import { findAll } from '@/services/disciplina-service'
 
  export default {
+   props: ['search'],
    data () {
      return {
        modalDelete: false,

@@ -4,7 +4,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
 import router from './router'
-import DeleteModal from '@/components/shared/DeleteModal'
+import DeleteModal from '@/components/Shared/DeleteModal'
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
