@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
 import router from './router'
+import { store } from './store'
 import DeleteModal from '@/components/Shared/DeleteModal'
 Vue.config.productionTip = false
 
@@ -18,6 +19,7 @@ import('../node_modules/vuetify/dist/vuetify.min.css')
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

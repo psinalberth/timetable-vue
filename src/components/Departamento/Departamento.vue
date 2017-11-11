@@ -7,17 +7,17 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Código" required></v-text-field>
+    <v-text-field label="Código" v-model="departamento.codigo" required></v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Nome" required></v-text-field>
+    <v-text-field label="Nome" v-model="departamento.nome" required></v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Descrição" multi-line rows="3" required></v-text-field>
+    <v-text-field label="Descrição" multi-line rows="3" v-model="departamento.descricao" required></v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row class="mt-0">
@@ -32,3 +32,26 @@
   </v-layout>
  </v-container>
 </template>
+<script>
+ import Http from '@/services/shared/Http'
+
+ export default {
+   data () {
+     return {
+       departamento: {
+         id: '',
+         codigo: '',
+         nome: '',
+         descricao: ''
+       }
+     }
+   },
+   mounted () {
+     if (this.$route.params.selecionado) {
+       this.departamento = this.$route.params.selecionado
+     } else {
+       Http.get('departamentos/' + this.$route.params.id).then(response => { this.departamento = response.data })
+     }
+   }
+ }
+</script>

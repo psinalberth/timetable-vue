@@ -3,12 +3,12 @@
     <navegacao :menuItems="menuItems" :drawer="drawer"></navegacao>
     <transition name="slide-y-transition">
      <toolbar-home v-if="$route.meta.home" :menuItems="menuItems"></toolbar-home>
-     <toolbar-busca v-if="$route.meta.list"></toolbar-busca>
+     <toolbar-busca v-if="$route.meta.list" @showMenu="show"></toolbar-busca>
      <toolbar-formulario title="Hello" v-if="$route.meta.form"></toolbar-formulario>
     </transition>
     <main>
       <v-content>
-       <transition name="slide-y-transition" mode="out-in">
+       <transition name="fade-transition" mode="out-in">
         <router-view></router-view>
        </transition>
       </v-content>
@@ -27,6 +27,7 @@
     data: () => ({
       drawer: false,
       title: 'Timetable',
+      search: '',
       menuItems: [
         {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'editar-professor'},
         {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
@@ -46,6 +47,16 @@
       },
       goBack () {
         console.log('Hello')
+      },
+      hi () {
+        console.log('Hello Moto')
+      },
+      show () {
+        if (this.drawer) {
+          this.drawer = false
+        } else {
+          this.drawer = true
+        }
       }
     },
     components: {

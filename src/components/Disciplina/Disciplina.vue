@@ -27,14 +27,14 @@
   </v-layout>
   <v-layout row class="mt-3">
    <v-flex xs12 sm6 offset-sm3>
-    <v-btn class="primary">Salvar</v-btn>
+    <v-btn class="primary" @click="submit">Salvar</v-btn>
    </v-flex>
   </v-layout>
  </v-container>
 </template>
 <script>
  import {validationMixin} from 'vuelidate'
- import {findById, save} from '@/services/disciplina-service'
+ import {findById} from '@/services/disciplina-service'
  import {required, maxLength} from 'vuelidate/lib/validators'
  export default {
    mixins: [validationMixin],
@@ -62,7 +62,8 @@
    methods: {
      submit () {
        this.$v.$touch()
-       save(this.disciplina)
+       this.$store.dispatch('SAVE_DISCIPLINA', this.disciplina)
+       this.$router.push({ name: 'listar-disciplinas' })
      },
      reset () {
        this.disciplina = {}

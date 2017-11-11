@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height v-if="disciplinas.length == 0">
+  <v-container fluid fill-height v-if="this.disciplinas.length == 0">
     <v-container>
       <v-layout justify-center align-center>
         <img center src="../../assets/logo.png">
@@ -11,13 +11,8 @@
   </v-container>
   <v-layout v-else>
     <v-flex xs12>
-      <v-container fluid class="elevation-0">
-        <v-layout wrap>
-           <v-text-field solo v-model="textoPesquisa" single-line prepend-icon="search" placeholder="Pesquisar" cancel></v-text-field>
-        </v-layout>
-      </v-container>
       <v-list two-line style="background: transparent">
-        <template v-for="disciplina in filter">
+        <template v-for="disciplina in disciplinas">
           <v-list-tile @click.stop="editar(disciplina)">
             <v-list-tile-content>
               <v-list-tile-title>{{disciplina.descricao}}</v-list-tile-title>
@@ -28,44 +23,25 @@
         </template>
       </v-list>
     </v-flex>
-   <v-modal :visible="modalDelete" @onCancel="foo" @onConfirm="remover">
+   <!-- <v-modal :visible="modalDelete" @onCancel="foo" @onConfirm="remover">
      <v-card-actions align-center justify-center slot="actions">
         <v-btn flat slot="actions" color="green lighten-1" @click="remove">Remover</v-btn>
         <v-btn flat slot="actions" color="red lighten-1" @click="showModal">Cancelar</v-btn>  
       </v-card-actions>
-   </v-modal>
+   </v-modal> -->
     <v-btn fab dark color="red lighten-2" fixed bottom right @click="novo">
       <v-icon>edit</v-icon>
     </v-btn>
   </v-layout>
 </template>
 <script>
- import { findAll } from '@/services/disciplina-service'
-
  export default {
-   props: ['search'],
-   data () {
-     return {
-       modalDelete: false,
-       textoPesquisa: '',
-       title: 'Disciplinas',
-       disciplinas: []
-     }
-   },
    mounted () {
-     findAll().then(response => response.data).then(disciplinas => { this.disciplinas = disciplinas })
+     this.$store.dispatch('LOAD_ALL_DISCIPLINAS')
    },
    computed: {
-     filter () {
-       var self = this
-
-       if (this.textoPesquisa == null || this.textoPesquisa === '') {
-         return this.disciplinas
-       }
-
-       return this.disciplinas.filter(function (disciplina) {
-         return disciplina.descricao.toUpperCase().indexOf(self.textoPesquisa.toUpperCase()) > -1
-       })
+     disciplinas () {
+       return this.$store.getters.disciplinas
      }
    },
    methods: {

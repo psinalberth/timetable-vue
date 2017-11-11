@@ -1,5 +1,5 @@
 <template>
- <v-navigation-drawer app temporary v-model="drawer">
+ <v-navigation-drawer temporary v-model="drawer">
   <v-list>
     <v-list-tile 
       v-for="item in menuItems" 
@@ -17,6 +17,14 @@
 </template>
 <script>
  export default {
-   props: ['menuItems', 'drawer']
+   props: {
+     menuItems: {
+       type: Array
+     },
+     drawer: {
+       type: Boolean,
+       default: false
+     }
+   }
  }
 </script>

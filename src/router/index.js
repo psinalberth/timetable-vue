@@ -9,6 +9,7 @@ import Professor from '@/components/Professor/Professor'
 import Professores from '@/components/Professor/Professores'
 import Cursos from '@/components/Curso/Cursos'
 import Curso from '@/components/Curso/Curso'
+import Departamentos from '@/components/Departamento/Departamentos'
 import Departamento from '@/components/Departamento/Departamento'
 import Horario from '@/components/Horario/Horario'
 import Sala from '@/components/Sala/Sala'
@@ -32,7 +33,8 @@ export default new Router({
     { path: '/professores/:id', name: 'editar-professor', component: Professor, meta: { form: true } },
     { path: '/cursos', name: 'listar-cursos', component: Cursos, meta: { list: true } },
     { path: '/cursos/:id', name: 'editar-curso', component: Curso, meta: { form: true } },
-    { path: '/departamentos', name: 'novo-departamento', component: Departamento },
+    { path: '/departamentos', name: 'listar-departamentos', component: Departamentos, meta: { list: true } },
+    { path: '/departamentos/:id', name: 'editar-departamento', component: Departamento, meta: { form: true } },
     { path: '/horarios', name: 'novo-horario', component: Horario },
     { path: '/salas', name: 'nova-sala', component: Sala },
     { path: '/matrizes', name: 'listar-matrizes', component: MatrizesCurriculares, meta: { list: true } },
