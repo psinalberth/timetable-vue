@@ -7,7 +7,6 @@
 </template>
 <script>
  export default {
-   props: ['lista'],
    data () {
      return {
        search: ''
@@ -15,14 +14,11 @@
    },
    methods: {
      find () {
-       this.$store.dispatch('SET_TEXTO_PESQUISA', this.search)
+       this.$store.dispatch('SET_TEXTO_PESQUISA', { search: this.search, action: this.$route.meta.action })
      },
      showMenu () {
        this.$emit('showMenu', this.search)
      }
-   },
-   computed: {
-     teste () {}
    }
  }
 </script>

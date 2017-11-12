@@ -19,20 +19,18 @@
  </v-layout>
 </template>
 <script>
- import Http from '@/services/shared/Http'
-
  export default {
-   data () {
-     return {
-       departamentos: []
-     }
-   },
    mounted () {
-     Http.get('departamentos/').then(response => response.data).then(departamentos => { this.departamentos = departamentos })
+     this.$store.dispatch('LOAD_ALL_DEPARTAMENTOS')
    },
    methods: {
      editar (departamento) {
        this.$router.push({ name: 'editar-departamento', params: { id: departamento.id, selecionado: departamento } })
+     }
+   },
+   computed: {
+     departamentos () {
+       return this.$store.getters.departamentos
      }
    }
  }
