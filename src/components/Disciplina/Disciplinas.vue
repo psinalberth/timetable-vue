@@ -15,20 +15,14 @@
         <template v-for="disciplina in disciplinas">
           <v-list-tile @click.stop="editar(disciplina)">
             <v-list-tile-content>
-              <v-list-tile-title>{{disciplina.descricao}}</v-list-tile-title>
-              <v-list-tile-sub-title>{{disciplina.sigla}}</v-list-tile-sub-title>
+              <v-list-tile-title v-text="disciplina.descricao"></v-list-tile-title>
+              <v-list-tile-sub-title v-text="disciplina.sigla"></v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
         </template>
       </v-list>
     </v-flex>
-   <!-- <v-modal :visible="modalDelete" @onCancel="foo" @onConfirm="remover">
-     <v-card-actions align-center justify-center slot="actions">
-        <v-btn flat slot="actions" color="green lighten-1" @click="remove">Remover</v-btn>
-        <v-btn flat slot="actions" color="red lighten-1" @click="showModal">Cancelar</v-btn>  
-      </v-card-actions>
-   </v-modal> -->
     <v-btn fab dark color="red lighten-2" fixed bottom right @click="novo">
       <v-icon>edit</v-icon>
     </v-btn>
@@ -49,6 +43,7 @@
        this.$router.push({name: 'editar-disciplina', params: {id: 'nova'}})
      },
      editar (disciplina) {
+       this.$store.dispatch('FIND_DISCIPLINA', disciplina)
        this.$router.push({name: 'editar-disciplina', params: {id: disciplina.id}})
      }
    }

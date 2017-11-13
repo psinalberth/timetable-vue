@@ -41,10 +41,12 @@
     <span class="red--text mr-1">*</span>Campos obrigatórios
    </v-flex>
   </v-layout>
-  <v-layout row>
+  <v-layout row class="mt-4">
    <v-flex xs12 sm6 offset-sm3>
-    <v-spacer></v-spacer>
-    <v-btn class="primary" @click="editarPeriodos(matriz)">Avançar</v-btn>
+    <v-layout row>
+     <v-spacer></v-spacer>
+     <v-btn class="primary" @click="editarPeriodos(matriz)">Avançar</v-btn>
+    </v-layout>
    </v-flex>
   </v-layout>
  </v-container>	

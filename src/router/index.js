@@ -4,15 +4,21 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Disciplinas from '@/components/Disciplina/Disciplinas'
 import Disciplina from '@/components/Disciplina/Disciplina'
+
 import Navegacao from '@/components/Shared/Navegacao'
-import Professor from '@/components/Professor/Professor'
+
 import Professores from '@/components/Professor/Professores'
+import Professor from '@/components/Professor/Professor'
+
 import Cursos from '@/components/Curso/Cursos'
 import Curso from '@/components/Curso/Curso'
+
 import Departamentos from '@/components/Departamento/Departamentos'
 import Departamento from '@/components/Departamento/Departamento'
+
 import Horario from '@/components/Horario/Horario'
 import Sala from '@/components/Sala/Sala'
+
 import MatrizesCurriculares from '@/components/MatrizCurricular/MatrizesCurriculares'
 import MatrizCurricular from '@/components/MatrizCurricular/MatrizCurricular'
 import Periodos from '@/components/MatrizCurricular/Periodos'
@@ -34,13 +40,14 @@ export default new Router({
       path: '/disciplinas',
       name: 'listar-disciplinas',
       component: Disciplinas,
-      meta: { list: true, action: 'FILTRAR_DISCIPLINAS' }
+      meta: { list: true, action: 'FILTRAR_DISCIPLINAS', name: 'Disciplinas' }
     },
     {
       path: '/disciplina/:id',
       name: 'editar-disciplina',
       component: Disciplina,
-      meta: { form: true }
+      meta: { form: true, name: 'Editar Disciplina' },
+      props: true
     },
     {
       path: '/navegacao',
@@ -51,7 +58,7 @@ export default new Router({
       path: '/disciplina/adicionar',
       name: 'nova-disciplina',
       component: Disciplina,
-      meta: { form: true }
+      meta: { form: true, name: 'Adicionar Disciplina' }
     },
     {
       path: '/professores',
@@ -81,7 +88,7 @@ export default new Router({
       path: '/departamentos',
       name: 'listar-departamentos',
       component: Departamentos,
-      meta: { list: true, action: 'FILTRAR_DEPARTAMENTOS' }
+      meta: { list: true, action: 'FILTRAR_DEPARTAMENTOS', name: 'Departamentos' }
     },
     {
       path: '/departamentos/:id',
@@ -103,7 +110,7 @@ export default new Router({
       path: '/matrizes',
       name: 'listar-matrizes',
       component: MatrizesCurriculares,
-      meta: { list: true }
+      meta: { list: true, name: 'Matrizes Curriculares' }
     },
     {
       path: '/matrizes/:id',
@@ -115,12 +122,13 @@ export default new Router({
       path: '/matrizes/:id/periodos',
       name: 'listar-periodos',
       component: Periodos,
-      meta: { list: true }
+      meta: { list: true, name: 'Períodos' }
     },
     {
       path: '/matrizes/:matriz/periodos/:periodo/detalhes',
       name: 'listar-detalhes',
-      component: DetalhesDisciplinas
+      component: DetalhesDisciplinas,
+      meta: { list: true, name: 'Detalhes do Período' }
     }
   ]
 })

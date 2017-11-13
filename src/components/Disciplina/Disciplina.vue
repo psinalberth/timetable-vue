@@ -7,17 +7,31 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Código" v-model="disciplina.codigo" required></v-text-field>
+    <v-text-field 
+     label="Código" 
+     v-model="disciplina.codigo"
+     :error-messages="codigoErrors" 
+     required>   
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Sigla" v-model="disciplina.sigla" required></v-text-field>
+    <v-text-field 
+     label="Sigla" 
+     v-model="disciplina.sigla"
+     :error-messages="siglaErrors"
+     required></v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Descrição" v-model="disciplina.descricao" required></v-text-field>
+    <v-text-field 
+     label="Descrição" 
+     v-model="disciplina.descricao"
+     :error-messages="descricaoErrors"
+     required>
+    </v-text-field>
    </v-flex>
   </v-layout>
    <v-layout row class="mt-0">
@@ -45,6 +59,7 @@
        sigla: {required, maxLength: maxLength(10)}
      }
    },
+   props: ['id'],
    data () {
      return {
        disciplina: {
@@ -55,19 +70,15 @@
      }
    },
    mounted () {
-     if (this.$route.params.id) {
-       findById(this.$route.params.id).then(response => response.data).then(disciplina => { this.disciplina = disciplina })
+     if (this.id) {
+       findById(this.id).then(response => response.data).then(disciplina => { this.disciplina = disciplina })
      }
    },
    methods: {
      submit () {
        this.$v.$touch()
        this.$store.dispatch('SAVE_DISCIPLINA', this.disciplina)
-       this.$router.push({ name: 'listar-disciplinas' })
-     },
-     reset () {
-       this.disciplina = {}
-       this.$v.$reset()
+       // this.$router.push({ name: 'listar-disciplinas' })
      }
    },
    computed: {
@@ -87,6 +98,7 @@
        const erros = []
        if (!this.$v.disciplina.sigla.$dirty) return erros
        !this.$v.disciplina.sigla.required && erros.push('Sigla é obrigatório.')
+       !this.$v.disciplina.sigla.maxLength && erros.push('Sigla dever ter no máximo 10 caracteres.')
        return erros
      }
    }
