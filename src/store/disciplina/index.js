@@ -4,39 +4,65 @@ export default {
   state: {
     disciplinas: [],
     disciplina: {},
-    filteredList: []
+    disciplinasFiltradas: [],
+    uri: 'disciplinas/'
   },
   mutations: {
-    SET_ALL_DISCIPLINAS: (state, payload) => {
+    setDisciplinas: (state, payload) => {
       state.disciplinas = payload
     },
-    SET_FILTERED_LIST: (state, payload) => {
-      state.filteredList = payload
+    setDisciplinasFiltradas: (state, payload) => {
+      state.disciplinasFiltradas = payload
+    },
+    salvarDisciplina: (state, payload) => {
+      state.disciplinas.push(payload)
     }
   },
   actions: {
-    LOAD_ALL_DISCIPLINAS: function ({ commit }) {
-      Http.get('disciplinas/').then((response) => {
-        commit('SET_ALL_DISCIPLINAS', response.data)
-      }, (err) => {
-        console.log(err)
+    carregarDisciplinas: function ({ state, commit }) {
+      Http.get(state.uri).then(response => response.data).then(disciplinas => {
+        disciplinas.sort((d1, d2) => {
+          if (d1.descricao > d2.descricao) {
+            return 1
+          } else if (d1.descricao < d2.descricao) {
+            return -1
+          } else {
+            return 0
+          }
+        })
+        commit('setDisciplinas', disciplinas)
       })
     },
-    SAVE_DISCIPLINA: function ({ commit }, disciplina) {
-      console.log(disciplina)
+    salvarDisciplina: function ({ state, commit }, disciplina) {
+      if (!disciplina.id) {
+        Http.post(state.uri, disciplina)
+        commit('salvarDisciplina', disciplina)
+      } else {
+        Http.put(state.uri, disciplina)
+      }
     },
-    FILTRAR_DISCIPLINAS: function ({ commit, state }, textoPesquisa) {
-      let list = state.disciplinas.filter((disciplina) => {
-        return disciplina.descricao.toUpperCase().indexOf(textoPesquisa.toUpperCase()) > -1
-      })
-      commit('SET_FILTERED_LIST', list)
+    filtrarDisciplinas: function ({ commit, state }, textoPesquisa) {
+      if (textoPesquisa !== null && textoPesquisa !== '') {
+        let list = state.disciplinas.filter((disciplina) => {
+          return disciplina.descricao.toUpperCase().indexOf(textoPesquisa.toUpperCase()) > -1
+        })
+        commit('setDisciplinasFiltradas', list)
+      } else {
+        this.dispatch('carregarDisciplinas')
+        commit('setDisciplinasFiltradas', [])
+      }
+    },
+    removerDisciplina: function ({ state }, id) {
+      Http.delete(`${state.uri}/${id}`)
+      this.dispatch('carregarDisciplinas')
     }
   },
   getters: {
     disciplinas (state) {
-      if (state.filteredList.length > 0 || (state.textoPesquisa && state.textoPesquisa !== '')) {
-        return state.filteredList
+      if ((state.disciplinasFiltradas !== null && state.disciplinasFiltradas.length > 0) || (state.textoPesquisa != null && state.textoPesquisa !== '')) {
+        return state.disciplinasFiltradas
       }
+
       return state.disciplinas
     }
   }

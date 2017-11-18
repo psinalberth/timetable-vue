@@ -1,6 +1,38 @@
 <template>
  <v-container fluid>
   <v-layout row>
+   <v-flex xs12 sm6 offset-sm3>
+    <h4 class="grey--text">Criar um novo professor</h4>
+   </v-flex>
+  </v-layout>
+  <v-layout row>
+   <v-flex xs12 sm6 offset-sm3>
+    <v-text-field label="Nome" v-model="professor.nome" required></v-text-field>
+   </v-flex>
+  </v-layout>
+  <v-layout row>
+   <v-flex xs12 sm6 offset-sm3>
+    <v-select label="Categoria" v-model="professor.categoria" required></v-select>
+   </v-flex>
+  </v-layout>
+  <v-layout row>
+   <v-flex xs12 sm6 offset-sm3>
+    <v-select label="Departamento" v-model="professor.departamento" required></v-select>
+   </v-flex>
+  </v-layout>
+  <v-layout row class="mt-4">
+   <v-flex xs12 sm6 offset-sm3>
+    <v-layout row>
+     <v-spacer></v-spacer>
+     <v-btn class="primary" @click="editarDisciplinas(professor)">Ver Mais</v-btn>
+    </v-layout>
+   </v-flex>
+  </v-layout>
+ </v-container>
+</template>
+<!-- <template>
+ <v-container fluid>
+  <v-layout row>
    <v-flex xs12 sm6- offset-sm3>
     <h4 class="grey--text">Crie um novo professor</h4>
    </v-flex>
@@ -181,7 +213,7 @@
     </v-toolbar>
     <v-container fluid style="overflow: auto">
      <v-container grid-list-md>
-     <!-- <v-layout row wrap>
+     <v-layout row wrap>
       <v-flex xs12 sm4>
        <v-select solo placeholder="Dia da Semana" prepend-icon="event"></v-select>
       </v-flex>
@@ -231,7 +263,7 @@
         <v-time-picker v-model="time" autosave></v-time-picker>
       </v-menu>
       </v-flex>
-     </v-layout> -->
+     </v-layout>
      <v-layout row wrap class="mt-5">
        <v-flex class="xs12 sm2">
          <v-card dark class="primary text-xs-center">
@@ -301,12 +333,17 @@
    </v-card>
   </v-dialog>
  </v-container>
-</template>
+</template> -->
 <script>
  import {findAll} from '@/services/disciplina-service'
  export default {
    data () {
      return {
+       professor: {
+         nome: '',
+         categoria: '',
+         departamento: ''
+       },
        el: 1,
        dialog: false,
        dialog2: false,
@@ -317,6 +354,11 @@
    },
    mounted () {
      findAll().then(response => response.data).then(disciplinas => { this.disciplinas = disciplinas })
+   },
+   methods: {
+     editarDisciplinas (professor) {
+       console.log(professor)
+     }
    }
  }
 </script>

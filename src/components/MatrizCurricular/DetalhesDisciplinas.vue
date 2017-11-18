@@ -31,14 +31,14 @@
      <v-divider></v-divider>
      <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="primary">
-       <v-icon left>edit</v-icon>
-       Editar
-      </v-btn>	
+      <v-btn flat class="primary--text" @click="editarDetalhePeriodo(detalhe)">Editar</v-btn>	
      </v-card-actions>
     </v-card>
    </v-flex>
   </v-layout>
+  <v-btn fab fixed bottom right dark color="red lighten-2">
+   <v-icon>edit</v-icon>
+  </v-btn>
  </v-container>
 </template>
 <script>
@@ -53,6 +53,11 @@
    mounted () {
      if (this.$route.params.matriz && this.$route.params.periodo) {
        Http.get('matrizes/' + this.$route.params.matriz + '/periodos/' + this.$route.params.periodo + '/detalhes').then(response => response.data).then(detalhes => { this.detalhes = detalhes })
+     }
+   },
+   methods: {
+     editarDetalhePeriodo (detalhe) {
+       this.$router.push({ name: 'editar-detalhe', params: { id: detalhe.id, selecionado: detalhe } })
      }
    }
  }

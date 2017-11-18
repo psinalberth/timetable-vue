@@ -1,0 +1,38 @@
+{
+	"/disciplinas": {
+		"name": "listar-disciplinas"
+	},
+	"/disciplinas/:id": {
+		"name": "editar-disciplina"
+	},
+	"/professores": {
+		"name": "listar-professores"
+	},
+	"/professores/:id": {
+		"name": "editar-professor"
+	},
+	"/cursos": {
+		"name": "listar-cursos"
+	},
+	"/cursos/:id": {
+		"name": "editar-curso"
+	},
+	"/departamentos": {
+		"name": "listar-departamentos"
+	},
+	"/departamentos/:id": {
+		"name": "editar-departamento"
+	},
+	"/matrizes": {
+		"name": "listar-matrizes"
+	},
+	"/matrizes/:id": {
+		"name": "editar-matriz"
+	},
+	"/matrizes/:id/periodos": {
+		"name": "listar-periodos"
+	},
+	"/matrizes/:matriz/periodos/:periodo/detalhes": {
+		"name": "listar-detalhes"
+	}
+}

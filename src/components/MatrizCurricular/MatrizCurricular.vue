@@ -56,6 +56,7 @@
  import Http from '@/services/shared/Http'
 
  export default {
+   props: ['id', 'selecionado'],
    data () {
      return {
        matriz: Object,
@@ -64,10 +65,11 @@
      }
    },
    mounted () {
-     if (this.$route.params.selecionado) {
-       this.matriz = this.$route.params.selecionado
+     if (this.selecionado) {
+       console.log(this.selecionado)
+       this.matriz = this.selecionado
      } else {
-       Http.get('matrizes/' + this.$route.params.id).then(response => response.data).then(matriz => { this.matriz = matriz })
+       Http.get(`matrizes/${this.id}`).then(response => response.data).then(matriz => { this.matriz = matriz })
      }
 
      Http.get('cursos/').then(response => response.data).then(cursos => { this.cursos = cursos })
@@ -75,7 +77,7 @@
    },
    methods: {
      editarPeriodos (matriz) {
-       this.$router.push({name: 'listar-periodos', params: {selecionado: matriz}})
+       this.$router.push({name: 'listar-periodos', params: {selecionado: matriz, id: matriz.id}})
      }
    }
  }

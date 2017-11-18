@@ -1,0 +1,57 @@
+{
+	"/disciplinas": {
+		"list": true,
+		"name": "Disciplinas",
+		"actions": {
+			"list": "filtrarDisciplinas"
+		}
+	},
+	"/disciplinas/:id": {
+		"form": true,
+		"name": "Editar Disciplina",
+		"actions": {
+			"save": "salvarDisciplina",
+			"delete": "removerDisciplina"
+		}
+	},
+	"/professores": {
+		"list": true,
+		"name": "Professores"
+	},
+	"/professores/:id": {
+		"form": true,
+		"name": "Editar Professor"
+	},
+	"/cursos": {
+		"list": true,
+		"name": "Cursos"
+	},
+	"/cursos/:id": {
+		"form": true,
+		"name": "Editar Curso"
+	},
+	"/departamentos": {
+		"list": true,
+		"name": "Departamentos"
+	},
+	"/departamentos/:id": {
+		"form": true,
+		"name": "Editar Departamento"
+	},
+	"/matrizes": {
+		"list": true,
+		"name": "Matrizes Curriculares"
+	},
+	"/matrizes/:id": {
+		"form": true,
+		"name": "Editar Matriz Curricular"
+	},
+	"/matrizes/:id/periodos": {
+		"list": true,
+		"name": "Editar Períodos"
+	},
+	"/matrizes/:matriz/periodos/:periodo/detalhes": {
+		"list": true,
+		"name": "Detalhes do Período"
+	}
+}

@@ -42,9 +42,8 @@
  </v-container>
 </template>
 <script>
- import Http from '@/services/shared/Http'
-
  export default {
+   props: ['id', 'selecionado'],
    data () {
      return {
        matriz: Object,
@@ -52,9 +51,11 @@
      }
    },
    mounted () {
-     if (this.$route.params.selecionado) {
-       this.matriz = this.$route.params.selecionado
-       Http.get('/matrizes/' + this.matriz.id + '/periodos').then(response => response.data).then(periodos => { this.periodos = periodos })
+     console.log(this.selecionado)
+     console.log(this.id)
+     if (this.selecionado) {
+       this.matriz = this.selecionado
+       // Http.get(`/matrizes/${this.matriz.id}/periodos`).then(this.periodos = response.data)
      }
    },
    methods: {

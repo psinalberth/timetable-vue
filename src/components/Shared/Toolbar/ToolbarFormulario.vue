@@ -1,4 +1,5 @@
 <template>
+ <div>
  <v-toolbar app dark fixed class="primary">
   <v-tooltip bottom>
    <v-btn icon flat @click="goBack" slot="activator" class="ml-0">
@@ -11,23 +12,34 @@
    <v-btn icon flat>
    	<v-icon>check</v-icon>
    </v-btn>
-   <v-btn icon flat>
+   <v-btn icon flat @click="modalDelete = !modalDelete">
    	<v-icon>delete</v-icon>
    </v-btn>
  </v-toolbar>
- <!-- <v-modal :visible="modalDelete" @onCancel="foo" @onConfirm="remover">
+ <v-modal :visible="modalDelete">
   <v-card-actions align-center justify-center slot="actions">
-   <v-btn flat slot="actions" color="green lighten-1" @click="remove">Remover</v-btn>
-   <v-btn flat slot="actions" color="red lighten-1" @click="showModal">Cancelar</v-btn>  
+   <v-btn flat slot="actions" color="green lighten-1" @click="remover">Remover</v-btn>
+   <v-btn flat slot="actions" color="red lighten-1" @click="modalDelete = !modalDelete">Cancelar</v-btn>  
   </v-card-actions>
- </v-modal> -->
+ </v-modal>
+ </div>
 </template>
 <script>
  export default {
    props: ['title'],
+   data () {
+     return {
+       modalDelete: false
+     }
+   },
    methods: {
      goBack () {
        this.$emit('onGoBack')
+       this.$store.commit('setTextoPesquisa', '')
+       this.$router.go(-1)
+     },
+     remover () {
+       this.$store.dispatch('remover', { action: this.$route.meta.actions.delete, id: this.$route.params.id })
        this.$router.go(-1)
      }
    }

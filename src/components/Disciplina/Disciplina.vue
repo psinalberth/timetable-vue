@@ -34,7 +34,7 @@
     </v-text-field>
    </v-flex>
   </v-layout>
-   <v-layout row class="mt-0">
+  <v-layout row class="mt-0">
    <v-flex xs12 sm6 offset-sm3>
     <span class="red--text mr-1">*</span>Campos obrigatórios
    </v-flex>
@@ -77,8 +77,11 @@
    methods: {
      submit () {
        this.$v.$touch()
-       this.$store.dispatch('SAVE_DISCIPLINA', this.disciplina)
-       // this.$router.push({ name: 'listar-disciplinas' })
+
+       if (!this.$v.$invalid) {
+         this.$store.dispatch('salvarDisciplina', this.disciplina)
+         this.$router.push({ name: 'listar-disciplinas' })
+       }
      }
    },
    computed: {

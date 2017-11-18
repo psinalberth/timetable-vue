@@ -31,7 +31,7 @@
 <script>
  export default {
    mounted () {
-     this.$store.dispatch('LOAD_ALL_DISCIPLINAS')
+     this.$store.dispatch('carregarDisciplinas')
    },
    computed: {
      disciplinas () {
@@ -40,11 +40,11 @@
    },
    methods: {
      novo () {
-       this.$router.push({name: 'editar-disciplina', params: {id: 'nova'}})
+       this.$router.push({name: 'editar-disciplina', params: {id: 'nova-disciplina'}})
      },
      editar (disciplina) {
-       this.$store.dispatch('FIND_DISCIPLINA', disciplina)
        this.$router.push({name: 'editar-disciplina', params: {id: disciplina.id}})
+       // this.$store.dispatch('FIND_DISCIPLINA', disciplina)
      }
    }
 }
