@@ -53,5 +53,9 @@
 	"/matrizes/:matriz/periodos/:periodo/detalhes": {
 		"list": true,
 		"name": "Detalhes do Período"
+	},
+	"/matrizes/:matriz/periodos/:periodo/detalhes/:detalhe": {
+		"form": true,
+		"name": "Detalhes do Período"
 	}
 }

@@ -34,5 +34,8 @@
 	},
 	"/matrizes/:matriz/periodos/:periodo/detalhes": {
 		"name": "listar-detalhes"
+	},
+	"/matrizes/:matriz/periodos/:periodo/detalhes/:detalhe": {
+		"name": "editar-detalhe"
 	}
 }

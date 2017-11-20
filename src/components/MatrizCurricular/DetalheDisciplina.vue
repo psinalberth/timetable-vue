@@ -7,12 +7,24 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Disciplina"></v-text-field>
+    <v-select 
+     label="Disciplina"
+     v-model="detalhe.disciplina"
+     :items="disciplinas"
+     item-text="descricao"
+     item-value="descricao"
+     return-object
+     autocomplete
+     required>
+    </v-select>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Período" readonly></v-text-field>
+    <v-text-field 
+     label="Período"
+     v-model="detalhe.periodo">   
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
@@ -22,7 +34,17 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-select label="Pré-Requisitos"></v-select>
+    <v-select 
+     label="Pré-Requisitos"
+     v-model="detalhe.preRequisitos"
+     autocomplete
+     multiple
+     chips
+     :items="disciplinas"
+     item-text="descricao"
+     item-value="descricao"
+     return-object
+     ></v-select>
    </v-flex>
   </v-layout>
   <v-layout row>
@@ -37,7 +59,7 @@
   </v-layout>
   <v-layout row class="mt-3">
    <v-flex xs12 sm6 offset-sm3>
-    <v-btn class="primary" @click="">Salvar</v-btn>
+    <v-btn class="primary" @click="salvarDetalhe">Salvar</v-btn>
    </v-flex>
   </v-layout>
  </v-container>
@@ -45,11 +67,28 @@
 <script>
  export default {
    props: ['id', 'selecionado'],
+   mounted () {
+     this.$store.dispatch('carregarDisciplinas')
+   },
    data () {
      return {
        detalhe: {
+         disciplina: Object,
+         periodo: Object,
+         cargaHoraria: '',
+         preRequisitos: [],
          obrigatorio: true
        }
+     }
+   },
+   methods: {
+     salvarDetalhe () {
+       console.log(this.detalhe)
+     }
+   },
+   computed: {
+     disciplinas () {
+       return this.$store.getters.disciplinas
      }
    }
  }

@@ -42,6 +42,7 @@
  </v-container>
 </template>
 <script>
+ import Http from '@/services/shared/Http'
  export default {
    props: ['id', 'selecionado'],
    data () {
@@ -55,7 +56,11 @@
      console.log(this.id)
      if (this.selecionado) {
        this.matriz = this.selecionado
-       // Http.get(`/matrizes/${this.matriz.id}/periodos`).then(this.periodos = response.data)
+       Http.get(`/matrizes/${this.matriz.id}/periodos`)
+       .then(response => response.data)
+       .then(periodos => {
+         this.periodos = periodos
+       })
      }
    },
    methods: {

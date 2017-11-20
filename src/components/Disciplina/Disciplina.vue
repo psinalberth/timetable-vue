@@ -48,43 +48,47 @@
 </template>
 <script>
  import {validationMixin} from 'vuelidate'
- import {findById} from '@/services/disciplina-service'
  import {required, maxLength} from 'vuelidate/lib/validators'
  export default {
    mixins: [validationMixin],
    validations: {
      disciplina: {
-       codigo: {required},
+       codigo: {
+         required,
+         async unique (value) {
+           if (value === '') return true
+           this.$store.dispatch('findByCodigo', {
+             id: (this.disciplina.id ? this.disciplina.id : 0),
+             codigo: value
+           })
+           console.log(this.codigoDisponivel)
+           return this.codigoDisponivel
+         }
+       },
        descricao: {required},
        sigla: {required, maxLength: maxLength(10)}
      }
    },
    props: ['id'],
-   data () {
-     return {
-       disciplina: {
-         codigo: '',
-         sigla: '',
-         descricao: ''
-       }
-     }
-   },
-   mounted () {
-     if (this.id) {
-       findById(this.id).then(response => response.data).then(disciplina => { this.disciplina = disciplina })
-     }
-   },
+   mounted () {},
    methods: {
      submit () {
        this.$v.$touch()
 
        if (!this.$v.$invalid) {
+         console.log('Hello')
          this.$store.dispatch('salvarDisciplina', this.disciplina)
          this.$router.push({ name: 'listar-disciplinas' })
        }
      }
    },
    computed: {
+     disciplina () {
+       return this.$store.getters.disciplina
+     },
+     codigoDisponivel () {
+       return this.$store.getters.codigoDisponivel
+     },
      descricaoErrors () {
        const erros = []
        if (!this.$v.disciplina.descricao.$dirty) return erros
@@ -95,6 +99,7 @@
        const erros = []
        if (!this.$v.disciplina.codigo.$dirty) return erros
        !this.$v.disciplina.codigo.required && erros.push('Código é obrigatório.')
+       !this.$v.disciplina.codigo.unique && erros.push('Este código já está em uso.')
        return erros
      },
      siglaErrors () {

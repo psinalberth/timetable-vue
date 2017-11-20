@@ -41,10 +41,11 @@
    methods: {
      novo () {
        this.$router.push({name: 'editar-disciplina', params: {id: 'nova-disciplina'}})
+       this.$store.commit('setDisciplina', {})
      },
      editar (disciplina) {
        this.$router.push({name: 'editar-disciplina', params: {id: disciplina.id}})
-       // this.$store.dispatch('FIND_DISCIPLINA', disciplina)
+       this.$store.commit('setDisciplina', disciplina)
      }
    }
 }

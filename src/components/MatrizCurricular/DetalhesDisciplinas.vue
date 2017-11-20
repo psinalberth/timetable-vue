@@ -31,7 +31,7 @@
      <v-divider></v-divider>
      <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn flat class="primary--text" @click="editarDetalhePeriodo(detalhe)">Editar</v-btn>	
+      <v-btn flat class="primary--text" @click="editarDetalhePeriodo(detalhe)">Ver Mais</v-btn>	
      </v-card-actions>
     </v-card>
    </v-flex>
@@ -45,19 +45,28 @@
  import Http from '@/services/shared/Http'
 
  export default {
+   props: ['matriz', 'periodo'],
    data () {
      return {
        detalhes: []
      }
    },
    mounted () {
-     if (this.$route.params.matriz && this.$route.params.periodo) {
+     if (this.matriz && this.periodo) {
        Http.get('matrizes/' + this.$route.params.matriz + '/periodos/' + this.$route.params.periodo + '/detalhes').then(response => response.data).then(detalhes => { this.detalhes = detalhes })
      }
    },
    methods: {
      editarDetalhePeriodo (detalhe) {
-       this.$router.push({ name: 'editar-detalhe', params: { id: detalhe.id, selecionado: detalhe } })
+       this.$router.push({
+         name: 'editar-detalhe',
+         params: {
+           detalhe: detalhe.id,
+           matriz: this.matriz,
+           periodo: this.periodo,
+           selecionado: detalhe
+         }
+       })
      }
    }
  }

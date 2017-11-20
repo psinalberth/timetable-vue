@@ -3,11 +3,22 @@ import Http from '@/services/shared/Http'
 export default {
   state: {
     disciplinas: [],
-    disciplina: {},
+    disciplina: {
+      codigo: '',
+      sigla: '',
+      descricao: ''
+    },
     disciplinasFiltradas: [],
+    codigoDisponivel: true,
     uri: 'disciplinas/'
   },
   mutations: {
+    setDisciplina: (state, payload) => {
+      state.disciplina = payload
+    },
+    setCodigoDisponivel: (state, payload) => {
+      state.codigoDisponivel = payload
+    },
     setDisciplinas: (state, payload) => {
       state.disciplinas = payload
     },
@@ -16,6 +27,13 @@ export default {
     },
     salvarDisciplina: (state, payload) => {
       state.disciplinas.push(payload)
+    },
+    removerDisciplina: (state, payload) => {
+      const disciplina = state.disciplinas.find(disciplina => {
+        return disciplina.id === payload
+      })
+      state.disciplinas.splice(state.disciplinas.indexOf(disciplina), 1)
+      state.disciplinasFiltradas.splice(state.disciplinasFiltradas.indexOf(disciplina), 1)
     }
   },
   actions: {
@@ -52,9 +70,17 @@ export default {
         commit('setDisciplinasFiltradas', [])
       }
     },
-    removerDisciplina: function ({ state }, id) {
+    removerDisciplina: function ({ state, commit }, id) {
       Http.delete(`${state.uri}/${id}`)
+      commit('removerDisciplina', id)
       this.dispatch('carregarDisciplinas')
+    },
+    findByCodigo: function ({ state, commit }, payload) {
+      Http.get(`${state.uri}${payload.id}/disponivel/${payload.codigo}`)
+      .then(response => response.data)
+      .then(codigoDisponivel => {
+        commit('setCodigoDisponivel', codigoDisponivel)
+      })
     }
   },
   getters: {
@@ -64,6 +90,12 @@ export default {
       }
 
       return state.disciplinas
+    },
+    disciplina (state) {
+      return state.disciplina
+    },
+    codigoDisponivel (state) {
+      return state.codigoDisponivel
     }
   }
 }
