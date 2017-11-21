@@ -21,11 +21,12 @@
 <script>
  export default {
    mounted () {
-     this.$store.dispatch('LOAD_ALL_DEPARTAMENTOS')
+     this.$store.dispatch('carregarDepartamentos')
    },
    methods: {
      novoDepartamento () {
-       this.$router.push({name: 'editar-departamento', params: {id: 'nova'}})
+       this.$router.push({name: 'editar-departamento', params: {id: 'novo-departamento'}})
+       this.$store.commit('setDepartamento', {})
      },
      editar (departamento) {
        this.$router.push({ name: 'editar-departamento', params: { id: departamento.id, selecionado: departamento } })

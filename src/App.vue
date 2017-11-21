@@ -31,11 +31,11 @@
       menuItems: [
         {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'editar-professor'},
         {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
-        {icon: 'event', title: 'Grades de Horário', toolbar: true, link: 'nova-disciplina'},
         {icon: 'face', title: 'Sign Up', toolbar: true, link: 'navegacao'},
-        {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'nova-disciplina'},
-        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'nova-disciplina'},
-        {icon: 'heart', tiltle: 'Cursos', toolbar: false, link: 'novo-curso'}
+        {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'editar-disciplina'},
+        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'editar-disciplina'},
+        {icon: 'favorite', title: 'Cursos', toolbar: false, link: 'editar-curso'},
+        {icon: 'delete', title: 'Departamentos', toolbar: true, link: 'listar-departamentos'}
       ]
     }),
     props: {

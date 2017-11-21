@@ -27,30 +27,23 @@
   </v-layout>
   <v-layout row class="mt-3">
    <v-flex xs12 sm6 offset-sm3>
-    <v-btn class="primary">Salvar</v-btn>
+    <v-btn class="primary" @click="salvarDepartamento">Salvar</v-btn>
    </v-flex>
   </v-layout>
  </v-container>
 </template>
 <script>
- import Http from '@/services/shared/Http'
-
  export default {
-   data () {
-     return {
-       departamento: {
-         id: '',
-         codigo: '',
-         nome: '',
-         descricao: ''
-       }
+   mounted () {},
+   methods: {
+     salvarDepartamento () {
+       this.$store.dispatch('salvarDepartamento', this.departamento)
+       this.$router.push({ name: 'listar-departamentos' })
      }
    },
-   mounted () {
-     if (this.$route.params.selecionado) {
-       this.departamento = this.$route.params.selecionado
-     } else {
-       Http.get('departamentos/' + this.$route.params.id).then(response => { this.departamento = response.data })
+   computed: {
+     departamento () {
+       return this.$store.getters.departamento
      }
    }
  }

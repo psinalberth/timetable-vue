@@ -2,42 +2,57 @@ import Http from '@/services/shared/Http'
 
 export default {
   state: {
+    uri: 'departamentos/',
     departamentos: [],
-    departamento: {},
-    filteredList: []
+    departamento: {
+      id: 0,
+      codigo: '',
+      nome: '',
+      descricao: ''
+    },
+    departamentosFiltrados: []
   },
   mutations: {
-    SET_ALL_DEPARTAMENTOS: (state, payload) => {
+    setDepartamentos: (state, payload) => {
       state.departamentos = payload
     },
-    SET_FILTERED_LIST: (state, payload) => {
-      state.filteredList = payload
+    setDepartamentosFiltrados: (state, payload) => {
+      state.departamentosFiltrados = payload
+    },
+    salvarDepartamento: (state, payload) => {
+      state.departamentos.push(payload)
+    },
+    setDepartamento: (state, payload) => {
+      state.departamento = payload
     }
   },
   actions: {
-    LOAD_ALL_DEPARTAMENTOS: function ({ commit }) {
+    carregarDepartamentos: function ({ commit }) {
       Http.get('departamentos/').then((response) => {
-        commit('SET_ALL_DEPARTAMENTOS', response.data)
+        commit('setDepartamentos', response.data)
       }, (err) => {
         console.log(err)
       })
     },
-    SAVE_DISCIPLINA: function ({ commit }, disciplina) {
-      console.log(disciplina)
-    },
-    FILTRAR_DEPARTAMENTOS: function ({ commit, state }, textoPesquisa) {
+    filtrarDepartamentos: function ({ commit, state }, textoPesquisa) {
       let list = state.departamentos.filter((departamento) => {
         return departamento.nome.toUpperCase().indexOf(textoPesquisa.toUpperCase()) > -1
       })
-      commit('SET_FILTERED_LIST', list)
+      commit('setDepartamentosFiltrados', list)
+    },
+    salvarDepartamento: function ({ state, commit }, departamento) {
+      commit('salvarDepartamento', departamento)
     }
   },
   getters: {
     departamentos (state) {
-      if (state.filteredList.length > 0 || (state.textoPesquisa && state.textoPesquisa !== '')) {
-        return state.filteredList
+      if (state.departamentosFiltrados.length > 0 || (state.textoPesquisa && state.textoPesquisa !== '')) {
+        return state.departamentosFiltrados
       }
       return state.departamentos
+    },
+    departamento (state) {
+      return state.departamento
     }
   }
 }
