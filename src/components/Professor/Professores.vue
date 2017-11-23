@@ -19,16 +19,12 @@
  </v-layout>
 </template>
 <script>
- import { findAll } from '@/services/professor-service'
-
  export default {
    data () {
      return {
        professores: []
      }
    },
-   mounted () {
-     findAll().then(response => response.data).then(professores => { this.professores = professores })
-   }
+   mounted () {}
  }
 </script>

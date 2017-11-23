@@ -2,13 +2,17 @@
   <v-app>
     <navegacao :menuItems="menuItems" :drawer="drawer"></navegacao>
     <transition name="slide-y-transition">
-     <toolbar-home v-if="$route.meta.home" :menuItems="menuItems"></toolbar-home>
-     <toolbar-busca v-if="$route.meta.list" @showMenu="show"></toolbar-busca>
+     <toolbar-home 
+      v-if="$route.meta.home" 
+      :menuItems="menuItems" 
+      @toggleSidebar="drawer = !drawer">
+     </toolbar-home>
+     <toolbar-busca v-if="$route.meta.list" @showMenu="drawer = !drawer"></toolbar-busca>
      <toolbar-formulario title="Hello" v-if="$route.meta.form"></toolbar-formulario>
     </transition>
     <main>
       <v-content>
-       <transition name="fade-transition" mode="out-in">
+       <transition name="slide-y-transition" mode="out-in">
         <router-view></router-view>
        </transition>
       </v-content>

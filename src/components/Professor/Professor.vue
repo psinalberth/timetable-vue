@@ -335,7 +335,6 @@
  </v-container>
 </template> -->
 <script>
- import {findAll} from '@/services/disciplina-service'
  export default {
    data () {
      return {
@@ -352,9 +351,7 @@
        menu2: false
      }
    },
-   mounted () {
-     findAll().then(response => response.data).then(disciplinas => { this.disciplinas = disciplinas })
-   },
+   mounted () {},
    methods: {
      editarDisciplinas (professor) {
        console.log(professor)

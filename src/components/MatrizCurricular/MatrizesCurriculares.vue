@@ -44,17 +44,13 @@
  </v-container>
 </template>
 <script>
- import {findAll} from '@/services/matriz-curricular-service'
-
  export default {
    data () {
      return {
        matrizes: []
      }
    },
-   mounted () {
-     findAll().then(response => response.data).then(matrizes => { this.matrizes = matrizes })
-   },
+   mounted () {},
    methods: {
      editar (matriz) {
        this.$router.push({name: 'editar-matriz', params: { id: matriz.id, selecionado: matriz }})

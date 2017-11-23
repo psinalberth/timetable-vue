@@ -1,5 +1,5 @@
 <template>
- <v-navigation-drawer temporary v-model="drawer">
+ <v-navigation-drawer temporary app v-model="drawer">
   <v-list>
     <v-list-tile 
       v-for="item in menuItems" 

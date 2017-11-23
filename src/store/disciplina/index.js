@@ -50,10 +50,19 @@ export default {
         })
         commit('setDisciplinas', disciplinas)
       })
+      .catch(error => {
+        console.log(error)
+      })
     },
     salvarDisciplina: function ({ state, commit }, disciplina) {
       if (!disciplina.id) {
         Http.post(state.uri, disciplina)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
         commit('salvarDisciplina', disciplina)
       } else {
         Http.put(state.uri, disciplina)
@@ -71,9 +80,13 @@ export default {
       }
     },
     removerDisciplina: function ({ state, commit }, id) {
-      Http.delete(`${state.uri}/${id}`)
-      commit('removerDisciplina', id)
-      this.dispatch('carregarDisciplinas')
+      Http.delete(`${state.uri}/${id}`).then(() => {
+        commit('removerDisciplina', id)
+        this.dispatch('carregarDisciplinas')
+      })
+      .catch(error => {
+        console.log(error.response)
+      })
     },
     findByCodigo: function ({ state, commit }, payload) {
       Http.get(`${state.uri}${payload.id}/disponivel/${payload.codigo}`)

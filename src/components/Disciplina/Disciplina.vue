@@ -76,7 +76,6 @@
        this.$v.$touch()
 
        if (!this.$v.$invalid) {
-         console.log('Hello')
          this.$store.dispatch('salvarDisciplina', this.disciplina)
          this.$router.push({ name: 'listar-disciplinas' })
        }

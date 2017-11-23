@@ -24,7 +24,10 @@
 	},
 	"/cursos": {
 		"list": true,
-		"name": "Cursos"
+		"name": "Cursos",
+		"actions": {
+			"list": "filtrarCursos"
+		}
 	},
 	"/cursos/:id": {
 		"form": true,

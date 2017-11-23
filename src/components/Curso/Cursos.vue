@@ -14,26 +14,29 @@
     </template>
    </v-list>
   </v-flex>
-  <v-btn fab dark color="red lighten-2" fixed bottom right @click="novo">
+  <v-btn fab dark color="red lighten-2" fixed bottom right @click="novoCurso">
    <v-icon>edit</v-icon>
   </v-btn>
  </v-layout>
 </template>
 <script>
- import { findAll } from '@/services/curso-service'
-
  export default {
-   data () {
-     return {
-       cursos: []
-     }
-   },
    mounted () {
-     findAll().then(response => response.data).then(cursos => { this.cursos = cursos })
+     this.$store.dispatch('listarCursos')
    },
    methods: {
+     novoCurso () {
+       this.$store.commit('setCurso', {})
+       this.$router.push({name: 'editar-curso', params: { id: 'novo-curso' }})
+     },
      editar (curso) {
+       this.$store.commit('setCurso', curso)
        this.$router.push({name: 'editar-curso', params: { id: curso.id, selecionado: curso }})
+     }
+   },
+   computed: {
+     cursos () {
+       return this.$store.getters.cursos
      }
    }
  }

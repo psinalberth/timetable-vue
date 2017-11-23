@@ -40,37 +40,25 @@
   </v-layout>
   <v-layout row class="mt-3">
    <v-flex xs12 sm6 offset-sm3>
-    <v-btn class="primary" @click.native="submit">Salvar</v-btn>
+    <v-btn class="primary" @click.native="salvarCurso">Salvar</v-btn>
    </v-flex>
   </v-layout>
  </v-container>
 </template>
 <script>
- import { findAll } from '@/services/departamento-service'
- import { save } from '@/services/curso-service'
- 
  export default {
-   data () {
-     return {
-       departamentos: [],
-       curso: {
-         codigo: '',
-         nome: '',
-         descricao: '',
-         departamento: ''
-       }
-     }
-   },
-   mounted () {
-     findAll().then(response => response.data).then(departamentos => { this.departamentos = departamentos })
-
-     if (this.$route.params.selecionado) {
-       this.curso = this.$route.params.selecionado
-     }
-   },
+   mounted () {},
    methods: {
-     submit () {
-       save(this.curso)
+     salvarCurso () {
+       this.$store.dispatch('salvarCurso', this.curso)
+     }
+   },
+   computed: {
+     curso () {
+       return this.$store.getters.curso
+     },
+     departamentos () {
+       return this.$store.getters.departamentos
      }
    }
  }
