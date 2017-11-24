@@ -3,7 +3,7 @@
   <v-flex xs12>
    <v-list two-line style="background: transparent">
     <template v-for="departamento in departamentos">
-	   <v-list-tile @click="editar(departamento)">
+	   <v-list-tile @click="editarDepartamento(departamento)">
 	    <v-list-tile-content>
 	     <v-list-tile-title v-text="departamento.nome"></v-list-tile-title>
 	     <v-list-tile-sub-title v-text="departamento.codigo"></v-list-tile-sub-title>
@@ -21,15 +21,16 @@
 <script>
  export default {
    mounted () {
-     this.$store.dispatch('carregarDepartamentos')
+     this.$store.dispatch('listarDepartamentos')
    },
    methods: {
      novoDepartamento () {
        this.$router.push({name: 'editar-departamento', params: {id: 'novo-departamento'}})
        this.$store.commit('setDepartamento', {})
      },
-     editar (departamento) {
+     editarDepartamento (departamento) {
        this.$router.push({ name: 'editar-departamento', params: { id: departamento.id, selecionado: departamento } })
+       this.$store.commit('setDepartamento', departamento)
      }
    },
    computed: {

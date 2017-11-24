@@ -2,22 +2,34 @@
  <v-container fluid>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <h4 class="grey--text">Crie um novo curso</h4>
+    <h4 class="grey--text">Criar novo curso</h4>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Código" v-model="curso.codigo" required></v-text-field>
+    <v-text-field 
+     label="Código" 
+     v-model="curso.codigo" 
+     required>   
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Nome" v-model="curso.nome" required></v-text-field>
+    <v-text-field 
+     label="Nome" 
+     v-model="curso.nome" 
+     required>   
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Descrição" v-model="curso.descricao" required></v-text-field>
+    <v-text-field 
+     label="Descrição" 
+     v-model="curso.descricao" 
+     required>   
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
@@ -27,7 +39,7 @@
      v-model="curso.departamento"
      :items="departamentos"
      item-text="nome"
-     item-value="nome" 
+     item-value="id" 
      return-object 
      required>
     </v-select>
@@ -47,7 +59,9 @@
 </template>
 <script>
  export default {
-   mounted () {},
+   mounted () {
+     this.$store.dispatch('listarDepartamentos')
+   },
    methods: {
      salvarCurso () {
        this.$store.dispatch('salvarCurso', this.curso)

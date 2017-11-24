@@ -34,8 +34,7 @@
    },
    methods: {
      goBack () {
-       this.$emit('onGoBack')
-       this.$store.commit('setTextoPesquisa', '')
+       this.$store.dispatch('setTextoPesquisa', '')
        this.$router.go(-1)
      },
      remover () {

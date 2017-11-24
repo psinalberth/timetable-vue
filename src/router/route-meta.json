@@ -16,7 +16,10 @@
 	},
 	"/professores": {
 		"list": true,
-		"name": "Professores"
+		"name": "Professores",
+		"actions": {
+			"list": "filtrarProfessores"
+		}
 	},
 	"/professores/:id": {
 		"form": true,
@@ -31,23 +34,41 @@
 	},
 	"/cursos/:id": {
 		"form": true,
-		"name": "Editar Curso"
+		"name": "Editar Curso",
+		"actions": {
+			"save": "salvarCurso",
+			"delete": "removerCurso"
+		}
 	},
 	"/departamentos": {
 		"list": true,
-		"name": "Departamentos"
+		"name": "Departamentos",
+		"actions": {
+			"list": "filtrarDepartamentos"
+		}
 	},
 	"/departamentos/:id": {
 		"form": true,
-		"name": "Editar Departamento"
+		"name": "Editar Departamento",
+		"actions": {
+			"save": "salvarDepartamento",
+			"delete": "removerDepartamento"
+		}
 	},
 	"/matrizes": {
 		"list": true,
-		"name": "Matrizes Curriculares"
+		"name": "Matrizes Curriculares",
+		"actions": {
+			"list": "filtrarMatrizes"
+		}
 	},
 	"/matrizes/:id": {
 		"form": true,
-		"name": "Editar Matriz Curricular"
+		"name": "Editar Matriz Curricular",
+		"actions": {
+			"save": "salvarMatrizCurricular",
+			"delete": "removerMatrizCurricular"
+		}
 	},
 	"/matrizes/:id/periodos": {
 		"list": true,

@@ -7,7 +7,7 @@
       :menuItems="menuItems" 
       @toggleSidebar="drawer = !drawer">
      </toolbar-home>
-     <toolbar-busca v-if="$route.meta.list" @showMenu="drawer = !drawer"></toolbar-busca>
+     <toolbar-busca v-if="$route.meta.list"></toolbar-busca>
      <toolbar-formulario title="Hello" v-if="$route.meta.form"></toolbar-formulario>
     </transition>
     <main>
@@ -33,13 +33,13 @@
       title: 'Timetable',
       search: '',
       menuItems: [
-        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'editar-professor'},
-        {icon: 'library_books', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
-        {icon: 'face', title: 'Sign Up', toolbar: true, link: 'navegacao'},
-        {icon: 'person', title: 'Meu Perfil', toolbar: true, link: 'editar-disciplina'},
-        {icon: 'person', title: 'Matrizes Curriculares', toolbar: false, link: 'editar-disciplina'},
-        {icon: 'favorite', title: 'Cursos', toolbar: false, link: 'editar-curso'},
-        {icon: 'delete', title: 'Departamentos', toolbar: true, link: 'listar-departamentos'}
+        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'listar-professores'},
+        {icon: 'import_contacts', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
+        {icon: 'library_books', title: 'Matrizes Curriculares', toolbar: false, link: 'listar-matrizes'},
+        {icon: 'school', title: 'Cursos', toolbar: false, link: 'listar-cursos'},
+        {icon: 'business', title: 'Departamentos', toolbar: true, link: 'listar-departamentos'},
+        {icon: 'event', title: 'Grades de Horário', toolbar: true, link: '/'},
+        {icon: 'schedule', title: 'Horários', toolbar: true, link: 'listar-horarios'}
       ]
     }),
     props: {

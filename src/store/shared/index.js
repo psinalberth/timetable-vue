@@ -1,13 +1,14 @@
 export default {
   state: {
-    textoPesquisa: ''
+    textoPesquisa: '',
+    sidebar: false
   },
   mutations: {
-    FILTER_LIST: (state, payload) => {
-      state.filteredList = payload
-    },
     setTextoPesquisa: (state, payload) => {
       state.textoPesquisa = payload
+    },
+    setSidebar: (state, payload) => {
+      state.sidebar = payload
     }
   },
   actions: {
@@ -17,9 +18,13 @@ export default {
     remover: function ({ commit, state }, payload) {
       this.dispatch(payload.action, payload.id)
     },
-    SET_PESQUISA: function ({ commit, state }, payload) {
-      commit('SET_TEXTO_PESQUISA', null)
+    setTextoPesquisa: function ({ commit, state }, payload) {
+      commit('setTextoPesquisa', '')
     }
   },
-  getters: {}
+  getters: {
+    sidebar (state) {
+      return state.sidebar
+    }
+  }
 }

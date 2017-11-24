@@ -24,29 +24,66 @@ export default {
     },
     setDepartamento: (state, payload) => {
       state.departamento = payload
+    },
+    removerDepartamento: (state, payload) => {
+      state.departamentos.splice(state.departamentos.indexOf(payload), 1)
     }
   },
   actions: {
-    carregarDepartamentos: function ({ commit }) {
-      Http.get('departamentos/').then((response) => {
+    listarDepartamentos: function ({ state, commit }) {
+      Http.get(state.uri).then((response) => {
         commit('setDepartamentos', response.data)
       }, (err) => {
         console.log(err)
       })
     },
-    filtrarDepartamentos: function ({ commit, state }, textoPesquisa) {
+    listarDepartamento: function ({ state, commit }, id) {
+      const departamento = state.departamentos.find(departamento => {
+        return departamento.id === id
+      })
+      commit('setDepartamento', departamento)
+    },
+    filtrarDepartamentos: function ({ state, commit }, textoPesquisa) {
       let list = state.departamentos.filter((departamento) => {
         return departamento.nome.toUpperCase().indexOf(textoPesquisa.toUpperCase()) > -1
       })
       commit('setDepartamentosFiltrados', list)
     },
     salvarDepartamento: function ({ state, commit }, departamento) {
-      commit('salvarDepartamento', departamento)
+      if (departamento.id === 0 || !departamento.id) {
+        Http.post(state.uri, departamento)
+        .then(response => {
+          const departamento = ''
+          commit('salvarDepartamento', departamento)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      } else {
+        Http.put(state.uri, departamento)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      }
+    },
+    removerDepartamento: function ({ state, commit }, id) {
+      Http.delete(`${state.uri}${id}`)
+      .then(response => {
+        const departamento = this.dispatch('listarDepartamento', id)
+        commit('removerDepartamento', departamento)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   },
   getters: {
     departamentos (state) {
-      if (state.departamentosFiltrados.length > 0 || (state.textoPesquisa && state.textoPesquisa !== '')) {
+      if (state.textoPesquisa && state.textoPesquisa !== '') return state.departamentosFiltrados
+      if (state.departamentosFiltrados.length > 0 && state.textoPesquisa !== '') {
         return state.departamentosFiltrados
       }
       return state.departamentos
