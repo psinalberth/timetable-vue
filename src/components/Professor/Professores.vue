@@ -13,18 +13,25 @@
     </template>
    </v-list>
   </v-flex>
-  <v-btn fab dark color="red lighten-2" fixed bottom right @click="novo">
+  <v-btn fab dark color="red lighten-2" fixed bottom right @click="novoProfessor">
    <v-icon>edit</v-icon>
   </v-btn>
  </v-layout>
 </template>
 <script>
  export default {
-   data () {
-     return {
-       professores: []
+   mounted () {
+     this.$store.dispatch('listarProfessores')
+   },
+   methods: {
+     novoProfessor () {
+       this.$router.push({ name: 'editar-professor', params: { id: 'novo-professor' } })
      }
    },
-   mounted () {}
+   computed: {
+     professores () {
+       return this.$store.getters.professores
+     }
+   }
  }
 </script>
