@@ -52,8 +52,6 @@
      }
    },
    mounted () {
-     console.log(this.selecionado)
-     console.log(this.id)
      if (this.selecionado) {
        this.matriz = this.selecionado
        Http.get(`/matrizes/${this.matriz.id}/periodos`)

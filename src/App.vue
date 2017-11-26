@@ -33,7 +33,7 @@
       title: 'Timetable',
       search: '',
       menuItems: [
-        {icon: 'supervisor_account', title: 'Professores', toolbar: true, link: 'listar-professores'},
+        {icon: 'supervisor_accounts', title: 'Professores', toolbar: true, link: 'listar-professores'},
         {icon: 'import_contacts', title: 'Disciplinas', toolbar: true, link: 'listar-disciplinas'},
         {icon: 'library_books', title: 'Matrizes Curriculares', toolbar: false, link: 'listar-matrizes'},
         {icon: 'school', title: 'Cursos', toolbar: false, link: 'listar-cursos'},

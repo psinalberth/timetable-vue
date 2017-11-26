@@ -35,7 +35,15 @@ export default {
     },
     listarCursos ({ state, commit }) {
       Http.get(state.uri)
-      .then(response => commit('setCursos', response.data))
+      .then(response => response.data)
+      .then(cursos => {
+        cursos.sort((c1, c2) => {
+          if (c1.nome > c2.nome) return 1
+          else if (c1.nome < c2.nome) return -1
+          else return 0
+        })
+        commit('setCursos', cursos)
+      })
       .catch(error => {
         console.log(error)
       })
@@ -55,7 +63,7 @@ export default {
       }
     },
     removerCurso ({ state, commit }, id) {
-      Http.delete(`${state.uri}/${id}`)
+      Http.delete(`${state.uri}${id}`)
       .then(() => {
         const curso = this.dispatch('listarCurso', id)
         commit('removerCurso', curso)

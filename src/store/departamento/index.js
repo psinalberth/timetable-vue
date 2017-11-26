@@ -31,10 +31,15 @@ export default {
   },
   actions: {
     listarDepartamentos: function ({ state, commit }) {
-      Http.get(state.uri).then((response) => {
-        commit('setDepartamentos', response.data)
-      }, (err) => {
-        console.log(err)
+      Http.get(state.uri)
+      .then(response => response.data)
+      .then(departamentos => {
+        departamentos.sort((d1, d2) => {
+          if (d1.nome > d2.nome) return 1
+          else if (d1.nome < d2.nome) return -1
+          else return 0
+        })
+        commit('setDepartamentos', departamentos)
       })
     },
     listarDepartamento: function ({ state, commit }, id) {

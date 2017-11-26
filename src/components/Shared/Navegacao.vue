@@ -4,12 +4,15 @@
   temporary 
   app
   v-model="drawer">
-  <v-toolbar dark flat class="red darken-2">
+  <v-toolbar 
+   dark 
+   flat 
+   class="red darken-2">
     <img width="40" center src="../../assets/logo.png">
     <v-toolbar-title>Vue My Timetable</v-toolbar-title>
   </v-toolbar>
   <v-list subheader>
-    <v-subheader>Administrador</v-subheader>
+    <v-subheader class="grey--text">Administrador</v-subheader>
     <v-list-tile
       v-for="item in menuItems" 
       router :to="{name: item.link}"

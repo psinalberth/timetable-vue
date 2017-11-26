@@ -23,14 +23,16 @@
         </template>
       </v-list>
     </v-flex>
-    <v-btn fab dark color="red lighten-2" fixed bottom right @click="novo">
+    <v-btn fab dark color="red darken-2" fixed bottom right @click="novo">
       <v-icon>edit</v-icon>
     </v-btn>
   </v-layout>
+
 </template>
 <script>
  export default {
    mounted () {
+     // https://material.io/color/#!/?view.left=1&view.right=0&primary.color=0277BD&secondary.color=D50000
      this.$store.dispatch('carregarDisciplinas')
    },
    computed: {

@@ -38,7 +38,7 @@
        this.$router.go(-1)
      },
      remover () {
-       this.$store.dispatch('remover', { action: this.$route.meta.actions.delete, id: this.$route.params.id })
+       this.$store.dispatch(this.$route.meta.actions.delete, this.$route.params.id)
        this.$router.go(-1)
      }
    }

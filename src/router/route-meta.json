@@ -78,7 +78,7 @@
 		"list": true,
 		"name": "Detalhes do Período"
 	},
-	"/matrizes/:matriz/periodos/:periodo/detalhes/:detalhe": {
+	"/matrizes/:matriz/periodos/:periodo/detalhes/:id": {
 		"form": true,
 		"name": "Detalhes do Período"
 	}

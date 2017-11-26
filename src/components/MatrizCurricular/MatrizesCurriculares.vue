@@ -22,7 +22,7 @@
        <v-flex xs12 sm4>
         <v-layout row>
          <v-spacer class="hidden-xs-only"></v-spacer>
-         <span class="display-2">8</span>
+         <span class="display-2" v-text="matriz.semestres"></span>
         </v-layout>
         <v-layout row>
          <v-spacer class="hidden-xs-only"></v-spacer>
@@ -45,15 +45,17 @@
 </template>
 <script>
  export default {
-   data () {
-     return {
-       matrizes: []
-     }
+   mounted () {
+     this.$store.dispatch('listarMatrizesCurriculares')
    },
-   mounted () {},
    methods: {
      editar (matriz) {
        this.$router.push({name: 'editar-matriz', params: { id: matriz.id, selecionado: matriz }})
+     }
+   },
+   computed: {
+     matrizes () {
+       return this.$store.getters.matrizes
      }
    }
  }

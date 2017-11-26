@@ -28,7 +28,7 @@
    },
    methods: {
      pesquisar () {
-       this.$store.dispatch('pesquisar', { search: this.search, action: this.$route.meta.actions.list })
+       this.$store.dispatch(this.$route.meta.actions.list, this.search)
      },
      showMenu () {
        this.$store.commit('setSidebar', !this.$store.getters.sidebar)

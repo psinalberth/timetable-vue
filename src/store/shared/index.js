@@ -12,12 +12,6 @@ export default {
     }
   },
   actions: {
-    pesquisar: function ({ commit, state }, payload) {
-      this.dispatch(payload.action, payload.search)
-    },
-    remover: function ({ commit, state }, payload) {
-      this.dispatch(payload.action, payload.id)
-    },
     setTextoPesquisa: function ({ commit, state }, payload) {
       commit('setTextoPesquisa', '')
     }

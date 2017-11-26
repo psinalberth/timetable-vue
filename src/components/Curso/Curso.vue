@@ -65,6 +65,7 @@
    methods: {
      salvarCurso () {
        this.$store.dispatch('salvarCurso', this.curso)
+       this.$router.push({ name: 'listar-cursos' })
      }
    },
    computed: {

@@ -61,7 +61,7 @@
        this.$router.push({
          name: 'editar-detalhe',
          params: {
-           detalhe: detalhe.id,
+           id: detalhe.id,
            matriz: this.matriz,
            periodo: this.periodo,
            selecionado: detalhe

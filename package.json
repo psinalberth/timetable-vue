@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "line-awesome": "github:icons8/line-awesome",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuelidate": "^0.6.1",

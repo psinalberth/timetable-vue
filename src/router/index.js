@@ -33,7 +33,7 @@ export default new Router({
     routeTo('/matrizes/:id', 'MatrizCurricular', 'MatrizCurricular'),
     routeTo('/matrizes/:id/periodos', 'MatrizCurricular', 'Periodos'),
     routeTo('/matrizes/:matriz/periodos/:periodo/detalhes', 'MatrizCurricular', 'DetalhesDisciplinas'),
-    routeTo('/matrizes/:matriz/periodos/:periodo/detalhes/:detalhe', 'MatrizCurricular', 'DetalheDisciplina'),
+    routeTo('/matrizes/:matriz/periodos/:periodo/detalhes/:id', 'MatrizCurricular', 'DetalheDisciplina'),
     { path: '/', component: Home, name: 'Home', meta: { home: true } },
     { path: '*', redirect: '/' }
   ]

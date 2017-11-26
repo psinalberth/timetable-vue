@@ -14,6 +14,7 @@ Vue.component('v-modal', DeleteModal)
 
 import('../node_modules/vuetify/dist/vuetify.min.js')
 import('../node_modules/vuetify/dist/vuetify.min.css')
+import('../node_modules/line-awesome/dist/css/line-awesome.css')
 
 /* eslint-disable no-new */
 new Vue({
