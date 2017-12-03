@@ -25,6 +25,7 @@ export default new Router({
     routeTo('/disciplinas/:id', 'Disciplina', 'Disciplina'),
     routeTo('/professores', 'Professor', 'Professores'),
     routeTo('/professores/:id', 'Professor', 'Professor'),
+    routeTo('/professores/:id/disciplinas', 'Professor', 'DisciplinasProfessor'),
     routeTo('/cursos', 'Curso', 'Cursos'),
     routeTo('/cursos/:id', 'Curso', 'Curso'),
     routeTo('/departamentos', 'Departamento', 'Departamentos'),
@@ -34,6 +35,10 @@ export default new Router({
     routeTo('/matrizes/:id/periodos', 'MatrizCurricular', 'Periodos'),
     routeTo('/matrizes/:matriz/periodos/:periodo/detalhes', 'MatrizCurricular', 'DetalhesDisciplinas'),
     routeTo('/matrizes/:matriz/periodos/:periodo/detalhes/:id', 'MatrizCurricular', 'DetalheDisciplina'),
+    routeTo('/grades', 'GradeHorarios', 'GradesHorarios'),
+    routeTo('/grades/:id', 'GradeHorarios', 'GradeHorarios'),
+    routeTo('/horarios', 'Horario', 'Horarios'),
+    routeTo('/horarios/:id', 'Horario', 'Horario'),
     { path: '/', component: Home, name: 'Home', meta: { home: true } },
     { path: '*', redirect: '/' }
   ]

@@ -11,6 +11,9 @@
 	"/professores/:id": {
 		"name": "editar-professor"
 	},
+	"/professores/:id/disciplinas": {
+		"name": "listar-disciplinas-professor"
+	},
 	"/cursos": {
 		"name": "listar-cursos"
 	},
@@ -37,5 +40,17 @@
 	},
 	"/matrizes/:matriz/periodos/:periodo/detalhes/:id": {
 		"name": "editar-detalhe"
+	},
+	"/grades": {
+		"name": "listar-grades"
+	},
+	"/grades/:id": {
+		"name": "editar-grade"
+	},
+	"/horarios": {
+		"name": "listar-horarios"
+	},
+	"/horarios/:id": {
+		"name": "editar-horario"
 	}
 }

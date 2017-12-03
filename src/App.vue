@@ -38,7 +38,7 @@
         {icon: 'library_books', title: 'Matrizes Curriculares', toolbar: false, link: 'listar-matrizes'},
         {icon: 'school', title: 'Cursos', toolbar: false, link: 'listar-cursos'},
         {icon: 'business', title: 'Departamentos', toolbar: true, link: 'listar-departamentos'},
-        {icon: 'event', title: 'Grades de Horário', toolbar: true, link: '/'},
+        {icon: 'event', title: 'Grades de Horário', toolbar: true, link: 'listar-grades'},
         {icon: 'schedule', title: 'Horários', toolbar: true, link: 'listar-horarios'}
       ]
     }),

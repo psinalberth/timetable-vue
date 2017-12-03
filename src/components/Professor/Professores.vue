@@ -3,7 +3,7 @@
   <v-flex xs12>
    <v-list two-line style="background: transparent">
     <template v-for="professor in professores">
-      <v-list-tile @click.stop="">
+      <v-list-tile @click.stop="editarProfessor(professor)">
        <v-list-tile-content>
         <v-list-tile-title v-text="professor.nome"></v-list-tile-title>
         <v-list-tile-sub-title v-text="professor.departamento.nome"></v-list-tile-sub-title>
@@ -26,6 +26,10 @@
    methods: {
      novoProfessor () {
        this.$router.push({ name: 'editar-professor', params: { id: 'novo-professor' } })
+     },
+     editarProfessor (professor) {
+       this.$store.commit('setProfessor', professor)
+       this.$router.push({ name: 'editar-professor', params: { id: professor.id } })
      }
    },
    computed: {

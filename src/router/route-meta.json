@@ -25,6 +25,10 @@
 		"form": true,
 		"name": "Editar Professor"
 	},
+	"/professores/:id/disciplinas": {
+		"form": true,
+		"name": "Editar Disciplinas"
+	},	
 	"/cursos": {
 		"list": true,
 		"name": "Cursos",
@@ -81,5 +85,21 @@
 	"/matrizes/:matriz/periodos/:periodo/detalhes/:id": {
 		"form": true,
 		"name": "Detalhes do Período"
+	},
+	"/grades": {
+		"list": true,
+		"name": "Grades de Horários"
+	},
+	"/grades/:id": {
+		"form": true,
+		"name": "Editar Grade de Horários"
+	},
+	"/horarios": {
+		"list": true,
+		"name": "Horários"
+	},
+	"/horarios/:id": {
+		"form": true,
+		"name": "Editar Horário"
 	}
 }

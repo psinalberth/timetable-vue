@@ -7,17 +7,33 @@
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-text-field label="Nome" v-model="professor.nome" required></v-text-field>
+    <v-text-field 
+     label="Nome" 
+     v-model="professor.nome" 
+     required>
+    </v-text-field>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-select label="Categoria" v-model="professor.categoria" required></v-select>
+    <v-select 
+     label="Categoria" 
+     v-model="professor.categoria" 
+     required>   
+    </v-select>
    </v-flex>
   </v-layout>
   <v-layout row>
    <v-flex xs12 sm6 offset-sm3>
-    <v-select label="Departamento" v-model="professor.departamento" required></v-select>
+    <v-select 
+     label="Departamento" 
+     v-model="professor.departamento"
+     :items="departamentos"
+     item-text="nome"
+     item-value="id" 
+     return-object 
+     required>
+    </v-select>
    </v-flex>
   </v-layout>
   <v-layout row class="mt-4">
@@ -336,25 +352,23 @@
 </template> -->
 <script>
  export default {
-   data () {
-     return {
-       professor: {
-         nome: '',
-         categoria: '',
-         departamento: ''
-       },
-       el: 1,
-       dialog: false,
-       dialog2: false,
-       disciplinas: [],
-       time: '',
-       menu2: false
+   mounted () {
+     this.$store.dispatch('listarDepartamentos')
+   },
+   methods: {
+     salvarProfessor () {
+       console.log(this.professor)
+     },
+     editarDisciplinas (professor) {
+       this.$router.push({ name: 'listar-disciplinas-professor', params: { id: professor.id } })
      }
    },
-   mounted () {},
-   methods: {
-     editarDisciplinas (professor) {
-       console.log(professor)
+   computed: {
+     professor () {
+       return this.$store.getters.professor
+     },
+     departamentos () {
+       return this.$store.getters.departamentos
      }
    }
  }
