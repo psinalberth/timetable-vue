@@ -101,5 +101,9 @@
 	"/horarios/:id": {
 		"form": true,
 		"name": "Editar Horário"
+	},
+	"/signup": {
+		"form": true,
+		"name": "Editar Usuário"
 	}
 }

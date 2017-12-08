@@ -52,5 +52,8 @@
 	},
 	"/horarios/:id": {
 		"name": "editar-horario"
+	},
+	"/signup": {
+		"name": "signup"
 	}
 }

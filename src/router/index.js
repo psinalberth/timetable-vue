@@ -39,6 +39,7 @@ export default new Router({
     routeTo('/grades/:id', 'GradeHorarios', 'GradeHorarios'),
     routeTo('/horarios', 'Horario', 'Horarios'),
     routeTo('/horarios/:id', 'Horario', 'Horario'),
+    routeTo('/signup', 'Signup', 'Signup'),
     { path: '/', component: Home, name: 'Home', meta: { home: true } },
     { path: '*', redirect: '/' }
   ]
